@@ -28,6 +28,7 @@ public class Usuario {
     private int ID_DATOS_PERSONALES;
         
     
+
     public int getID_DATOS_PERSONALES() {
         return ID_DATOS_PERSONALES;
     }   

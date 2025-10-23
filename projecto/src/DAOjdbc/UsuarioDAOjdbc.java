@@ -22,7 +22,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
 
     @Override
     public void registrar(Usuario usuario) {
-        // [cite: 79-87]
         String sql = "INSERT INTO USUARIO (NOMBRE_USUARIO, EMAIL, CONTRASENIA, ID_DATOS_PERSONALES) VALUES (?, ?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

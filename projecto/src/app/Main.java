@@ -1,7 +1,9 @@
 package app;
 
+import model.Fecha;
 import model.Usuario;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import DAO.UsuarioDAO;
@@ -9,6 +11,7 @@ import DAO.conexion;
 import DAOjdbc.UsuarioDAOjdbc;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  * Clase principal que inicializa la aplicación y coordina el flujo de registro.
@@ -28,8 +31,27 @@ public class Main {
     public static void registrarUsuario() {
         
         // 1. SOLICITAR DATOS Y VALIDAR FORMATO (Llamada al método estático de Usuario)
-        Usuario nuevoUsuario = Usuario.solicitarDatos(scanner);
-        
+        Usuario nuevoUsuario = new Usuario();
+        System.out.println("Ingrese DNI:");
+        nuevoUsuario.setDNI(scanner.nextInt());
+        System.out.println("Ingrese Nombre:");
+        nuevoUsuario.setNombre(scanner.nextLine());
+        System.out.println("Ingrese Apellido:");
+        nuevoUsuario.setApellido(scanner.nextLine());
+        System.out.println("Ingrese username:");
+        nuevoUsuario.setUsername(scanner.nextLine());
+        System.out.println("Ingrese Correo:");
+        nuevoUsuario.setCorreo(scanner.nextLine());
+        System.out.println("Ingrese Contrasenia:");
+        nuevoUsuario.setContrasenia(scanner.nextLine());
+         System.out.println("Ingrese Dia de Nacimiento:");
+         Fecha f= new Fecha()
+        F.setDia(scanner.nextInt());
+        System.out.println("Ingrese Mes de Nacimiento:");
+        nuevoUsuario.setFechaNacimiento().setMes(scanner.nextInt());
+        System.out.println("Ingrese Año de Nacimiento:");
+        nuevoUsuario.setFechaNacimiento().setAnio(scanner.nextInt());
+
         if (nuevoUsuario == null) {
             System.out.println("\nRegistro de usuario cancelado.");
             return;
