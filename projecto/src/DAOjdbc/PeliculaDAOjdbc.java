@@ -11,7 +11,6 @@ import java.util.LinkedList;
 
 import DAO.PeliculaDAO;
 import DB.BaseDeDatos;
-import model.Titulo;
 import model.Pelicula;
 
 public class PeliculaDAOjdbc implements PeliculaDAO {
@@ -23,7 +22,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-                //pri
+            //pri
             LinkedList<String> generos = pelicula.getGeneros();
             int k;
             String genero = "";

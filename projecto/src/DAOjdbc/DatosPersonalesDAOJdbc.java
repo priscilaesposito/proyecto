@@ -15,13 +15,13 @@ import model.Usuario;
 public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
 
     @Override
-    public void registrar(DatosPersonales datos) {
+    public void registrar(Usuario datos) {
         // [cite: 63-68]
         String sql = "INSERT INTO DATOS_PERSONALES (NOMBRES, APELLIDO, DNI) VALUES (?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, datos.getNombres());
+            pstmt.setString(1, datos.getNombre());
             pstmt.setString(2, datos.getApellido());
             pstmt.setInt(3, datos.getDni());
             pstmt.executeUpdate();
@@ -67,7 +67,7 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     }
 
     @Override
-    public void actualizar(DatosPersonales datos) {
+    public void actualizar(Usuario datos) {
         String sql = "UPDATE DATOS_PERSONALES SET NOMBRES = ?, APELLIDO = ?, DNI = ? WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     }
 
     @Override
-    public DatosPersonales buscarPorDni(int dni) {
+    public Usuario buscarPorDni(int dni) {
         String sql = "SELECT * FROM DATOS_PERSONALES WHERE DNI = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -105,12 +105,15 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     /**
      * Helper para convertir un ResultSet en un objeto DatosPersonales.
      */
-    private DatosPersonales mapResultSetToDatosPersonales(ResultSet rs) throws SQLException {
-        DatosPersonales datos = new DatosPersonales();
+    private Usuario mapResultSetToDatosPersonales(ResultSet rs) throws SQLException {
+        Usuario datos = new Usuario();
         datos.setId(rs.getInt("ID"));
         datos.setNombres(rs.getString("NOMBRES"));
         datos.setApellido(rs.getString("APELLIDO"));
         datos.setDni(rs.getInt("DNI"));
         return datos;
     }
+
+    
+
 }

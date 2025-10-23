@@ -1,4 +1,4 @@
-// Archivo: src/daojdbc/ReseniaDAOJdbc.java
+
 package DAOjdbc;
 
 import java.sql.Connection;
@@ -11,12 +11,12 @@ import java.util.List;
 
 import DAO.ReseniaDAO;
 import DB.BaseDeDatos;
-import model.ListasyResenias;
+import model.Resenia;
 
 public class ReseniaDAOjdbc implements ReseniaDAO {
 
     @Override
-    public void registrar(ListasyResenias resenia) {
+    public void registrar(Resenia resenia) {
         // [cite: 92]
         // Se asume APROBADO por defecto 0 (no aprobado)
         String sql = "INSERT INTO RESENIA (CALIFICACION, COMENTARIO, APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) " +
@@ -142,5 +142,11 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
         resenia.setIdUsuario(rs.getInt("ID_USUARIO"));
         resenia.setIdPelicula(rs.getInt("ID_PELICULA"));
         return resenia;
+    }
+
+    @Override
+    public void actualizar(Resenia resenia) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
     }
 }

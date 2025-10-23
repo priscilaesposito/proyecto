@@ -2,7 +2,7 @@ package model;
 
 import java.util.LinkedList;
 
-public class ListasyResenias {
+public class Resenia {
     private LinkedList<String> resenias;
     private double puntuacion;
     private int cantPuntuacion;

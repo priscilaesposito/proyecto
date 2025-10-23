@@ -9,12 +9,12 @@ public class Titulo {
     private LinkedList<String> generos;
     private LinkedList<String> paisesDisponible;
     private metadatos Metadatos;
-    private ListasyResenias LR; 
+    private Resenia LR; 
 
-    public ListasyResenias getListasyResenias() {
+    public Resenia getListasyResenias() {
         return LR;
     }
-    public void setListasyResenias(ListasyResenias lR) {
+    public void setListasyResenias(Resenia lR) {
         LR = lR;
     }
     public void setCantVisualizaciones(int cantVisualizaciones) {

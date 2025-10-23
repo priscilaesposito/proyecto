@@ -11,22 +11,22 @@ package model;
  * @see Cliente
  */
 
-//import java.util.LinkedList;
+import java.util.LinkedList;
+import model.Titulo; 
 
 public class GestionListas {
-     hola
-     public LinkedList<Titulo> miLista;
-     public LinkedList<Titulo> recomendacion;
-     public LinkedList<Titulo> historialVisualizacion;
-     private ublic LinkedList<Generos> misGeneros;
-     public LinkedList<Puntuaciones> misPuntuaciones;
-public GestionListas() {
-     // this.miLista = new LinkedList<Titulo>();
-     // this.recomendacion = new LinkedList<Titulo>();
-     // this.historialVisualizacion = new LinkedList<Titulo>();
-     // this.misGeneros = new LinkedList<Titulo>();
-     // this.misPuntuaciones = new LinkedList<Titulo>();
-     // }
+     private LinkedList<Titulo> miLista;
+     private LinkedList<Titulo> recomendacion;
+     private LinkedList<Titulo> historialVisualizacion;
+     private LinkedList<Generos> misGeneros;
+     private LinkedList<Puntuaciones> misPuntuaciones;
+     public GestionListas() {
+     this.miLista = new LinkedList<Titulo>();
+     this.recomendacion = new LinkedList<Titulo>();
+     this.historialVisualizacion = new LinkedList<Titulo>();
+     this.misGeneros = new LinkedList<Generos>();
+     this.misPuntuaciones = new LinkedList<Puntuaciones>();
+     }
 
      // public GestionListas(LinkedList<Titulo> miLista, LinkedList<Titulo>
      // recomendacion,
