@@ -72,6 +72,7 @@ public class Main {
     private static void solicitarDatosUsuario(Usuario nuevoUsuario){
         System.out.println("Ingrese DNI:");
         nuevoUsuario.setDNI(scanner.nextInt());
+        scanner.nextLine(); // Consumir el salto de línea pendiente
         System.out.println("Ingrese Nombre:");
         nuevoUsuario.setNombre(scanner.nextLine());
         System.out.println("Ingrese Apellido:");
