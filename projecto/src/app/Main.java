@@ -45,17 +45,14 @@ public class Main {
         System.out.println("Ingrese Contrasenia:");
         nuevoUsuario.setContrasenia(scanner.nextLine());
          System.out.println("Ingrese Dia de Nacimiento:");
-         Fecha f= new Fecha()
-        F.setDia(scanner.nextInt());
+         Fecha f= new Fecha();
+        f.setDia(scanner.nextInt());
         System.out.println("Ingrese Mes de Nacimiento:");
-        nuevoUsuario.setFechaNacimiento().setMes(scanner.nextInt());
+        f.setMes(scanner.nextInt());
         System.out.println("Ingrese Año de Nacimiento:");
-        nuevoUsuario.setFechaNacimiento().setAnio(scanner.nextInt());
+        f.setAnio(scanner.nextInt());
+         nuevoUsuario.setFechaNacimiento(f);
 
-        if (nuevoUsuario == null) {
-            System.out.println("\nRegistro de usuario cancelado.");
-            return;
-        }
 
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
