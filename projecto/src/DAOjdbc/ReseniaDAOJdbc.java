@@ -17,19 +17,19 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
 
     @Override
     public void registrar(Resenia resenia) {
-        // [cite: 92]
-        // Se asume APROBADO por defecto 0 (no aprobado)
+
         String sql = "INSERT INTO RESENIA (CALIFICACION, COMENTARIO, APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) " +
-                       "VALUES (?, ?, 0, ?, ?, ?)";
+                       "VALUES (?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, resenia.getCalificacion());
             pstmt.setString(2, resenia.getComentario());
-            pstmt.setTimestamp(3, Timestamp.valueOf(resenia.getFechaHora())); 
-            pstmt.setInt(4, resenia.getIdUsuario());
-            pstmt.setInt(5, resenia.getIdPelicula());
+            pstmt.setInt(3, resenia.isAprobado()); 
+            pstmt.setTimestamp(4, Timestamp.valueOf(resenia.getFechaHora())); 
+            pstmt.setInt( 5, resenia.getID_Usuario());
+            pstmt.setInt(6, resenia.getID_Pelicula());
             
             pstmt.executeUpdate();
             
@@ -39,7 +39,7 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     }
 
     @Override
-    public ListasyResenias buscarPorId(int id) {
+    public Resenia buscarPorId(int id) {
         String sql = "SELECT * FROM RESENIA WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -57,8 +57,8 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     }
 
     @Override
-    public List<ListasyResenias> listarTodos() {
-        List<ListasyResenias> lista = new ArrayList<>();
+    public List<Resenia> listarTodos() {
+        List<Resenia> lista = new ArrayList<>();
         String sql = "SELECT * FROM RESENIA";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -74,7 +74,7 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     }
 
     @Override
-    public void actualizar(ListasyResenias resenia) {
+    public void actualizar(Resenia resenia) {
         String sql = "UPDATE RESENIA SET CALIFICACION = ?, COMENTARIO = ?, APROBADO = ?, " +
                        "FECHA_HORA = ?, ID_USUARIO = ?, ID_PELICULA = ? WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
@@ -84,21 +84,21 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
             pstmt.setString(2, resenia.getComentario());
             pstmt.setInt(3, resenia.isAprobado() ? 1 : 0);
             pstmt.setTimestamp(4, Timestamp.valueOf(resenia.getFechaHora()));
-            pstmt.setInt(5, resenia.getIdUsuario());
-            pstmt.setInt(6, resenia.getIdPelicula());
-            pstmt.setInt(7, resenia.getId()); // ID para el WHERE
+            pstmt.setInt(5, resenia.getID_Usuario());
+            pstmt.setInt(6, resenia.getID_Pelicula());
+            pstmt.setInt(7, resenia.getID_Resenia()); 
             
             pstmt.executeUpdate();
             
         } catch (SQLException e) {
-            System.out.println("Error al actualizar la reseña: " + e.getMessage());
+            System.out.println("Error al actualizar la resenia: " + e.getMessage());
         }
     }
 
     @Override
-    public List<ListasyResenias> listarNoAprobadas() {
+    public List<Resenia> listarNoAprobadas() {
         // 
-        List<ListasyResenias> lista = new ArrayList<>();
+        List<Resenia> lista = new ArrayList<>();
         String sql = "SELECT * FROM RESENIA WHERE APROBADO = 0";
 
         try (Connection conn = BaseDeDatos.conectar();
@@ -109,7 +109,7 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
                 lista.add(mapResultSetToResenia(rs));
             }
         } catch (SQLException e) {
-            System.out.println("Error al listar reseñas no aprobadas: " + e.getMessage());
+            System.out.println("Error al listar resenias no aprobadas: " + e.getMessage());
         }
         return lista;
     }
@@ -125,28 +125,24 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
             pstmt.executeUpdate();
             
         } catch (SQLException e) {
-            System.out.println("Error al aprobar la reseña: " + e.getMessage());
+            System.out.println("Error al aprobar la resenia: " + e.getMessage());
         }
     }
 
-    /**
-     * Helper para convertir un ResultSet en un objeto Resenia.
-     */
-    private ListasyResenias mapResultSetToResenia(ResultSet rs) throws SQLException {
-        ListasyResenias resenia = new ListasyResenias();
-        resenia.setId(rs.getInt("ID"));
+    private Resenia mapResultSetToResenia(ResultSet rs) throws SQLException {
+        Resenia resenia = new Resenia();
+        resenia.setID_Resenia(rs.getInt("ID"));
         resenia.setCalificacion(rs.getInt("CALIFICACION"));
         resenia.setComentario(rs.getString("COMENTARIO"));
-        resenia.setAprobado(rs.getInt("APROBADO") == 1);
-        resenia.setFechaHora(rs.getTimestamp("FECHA_HORA").toLocalDateTime());
-        resenia.setIdUsuario(rs.getInt("ID_USUARIO"));
-        resenia.setIdPelicula(rs.getInt("ID_PELICULA"));
+        resenia.setAprobado(rs.getInt("APROBADO"));
+        resenia.setFechaHora(rs.getString("FECHA_HORA"));
+        resenia.setID_Usuario(rs.getInt("ID_USUARIO"));
+        resenia.setID_Pelicula(rs.getInt("ID_PELICULA"));
         return resenia;
     }
 
     @Override
     public void actualizar(Resenia resenia) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
     }
 }

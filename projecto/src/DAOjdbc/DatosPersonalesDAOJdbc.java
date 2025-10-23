@@ -75,7 +75,7 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
             pstmt.setString(1, datos.getNombre());
             pstmt.setString(2, datos.getApellido());
             pstmt.setInt(3, datos.getDNI());
-            pstmt.setInt(4, datos.getId()); // ID para el WHERE
+            pstmt.setInt(4, datos.getID_DATOS_PERSONALES()); // ID para el WHERE
             
             pstmt.executeUpdate();
             
@@ -107,7 +107,7 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
      */
     private Usuario mapResultSetToDatosPersonales(ResultSet rs) throws SQLException {
         Usuario datos = new Usuario();
-        datos.setId(rs.getInt("ID"));
+        datos.setID_DATOS_PERSONALES(rs.getInt("ID"));
         datos.setNombre(rs.getString("NOMBRES"));
         datos.setApellido(rs.getString("APELLIDO"));
         datos.setDNI(rs.getInt("DNI"));

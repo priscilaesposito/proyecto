@@ -1,8 +1,8 @@
 
 package DAO;
 
-import model.Resenia;
 import java.util.List;
+import model.Resenia;
 
 public interface ReseniaDAO {
 

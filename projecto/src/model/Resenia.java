@@ -1,39 +1,88 @@
 package model;
 
 import java.util.LinkedList;
-  APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) " +
-                       "VALUES (?, ?, 0, ?, ?, ?)";
+
 public class Resenia {
-    private LinkedList<String> resenias;
-    private double puntuacion;
-    private int cantPuntuacion;
-    private int sumaPuntuacion;
-    private
+    private int calificacion;
+    private String comentario;
+    private int aprobado;
+    private String fechaHora;
+    private int ID_Usuario;
+    private int ID_Pelicula;
+    private int ID_Resenia;
 
-    private boolean moderacion(String resenia) {
-        // Lógica para moderar la reseña, por ejemplo, buscar palabras no permitidas.
-        return true; // Placeholder para indicar que la reseña es válida.
+    public Resenia() {
     }
 
-    public LinkedList<String> getResenias() {
-        return resenias;
+    public Resenia(int calificacion, String comentario, int aprobado, String fechaHora, int ID_Usuario, int ID_Pelicula, int ID_Resenia) {
+        this.calificacion = calificacion;
+        this.comentario = comentario;
+        this.aprobado = aprobado;
+        this.fechaHora = fechaHora;
+        this.ID_Usuario = ID_Usuario;
+        this.ID_Pelicula = ID_Pelicula;
+        this.ID_Resenia = ID_Resenia;
     }
 
-    public void setPuntuacion(double puntuacion) {
-        this.puntuacion = puntuacion;
+    // --- Getters ---
+
+    public int getCalificacion() {
+        return calificacion;
     }
 
-    public double getPuntuacion() {
-        return puntuacion;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void puntuar(int nuevaPuntuacion) {
-        this.sumaPuntuacion += nuevaPuntuacion;
-        this.cantPuntuacion++;
-        this.puntuacion = (double) this.sumaPuntuacion / this.cantPuntuacion;
+    public int isAprobado() {
+        return aprobado;
     }
 
-    public void añadirResenias(String resenia) {
-        this.resenias.add(resenia);
+    public String getFechaHora() {
+        return fechaHora;
     }
+
+    public int getID_Usuario() {
+        return ID_Usuario;
+    }
+
+    public int getID_Pelicula() {
+        return ID_Pelicula;
+    }
+
+    public int getID_Resenia() {
+        return ID_Resenia;
+    }
+
+    // --- Setters ---
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public void setAprobado(int aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public void setFecha_hora(String fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public void setID_Usuario(int ID_Usuario) {
+        this.ID_Usuario = ID_Usuario;
+    }
+
+    public void setID_Pelicula(int ID_Pelicula) {
+        this.ID_Pelicula = ID_Pelicula;
+    }
+
+    public void setID_Resenia(int ID_Resenia) {
+        this.ID_Resenia = ID_Resenia;
+    }
+
+
 }

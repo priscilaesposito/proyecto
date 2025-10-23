@@ -5,6 +5,7 @@ import model.Usuario;
 import java.util.Scanner;
 
 import DAO.UsuarioDAO;
+import DAOjdbc.UsuarioDAOjdbc;
 
 import java.sql.SQLException;
 
@@ -16,7 +17,7 @@ import java.sql.SQLException;
  */
 public class Main {
 
-    private static UsuarioDAO usuarioDAO = new UsuarioDAO();
+     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
     private static Scanner scanner = new Scanner(System.in);
     
     /**
@@ -35,8 +36,8 @@ public class Main {
 
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
-            if (usuarioDAO.existeDNI(nuevoUsuario.getDni())) {
-                System.out.println("\n[ERROR FATAL] El DNI " + nuevoUsuario.getDni() + " ya está registrado. No se puede guardar.");
+            if (usuarioDAO.existeDNI(nuevoUsuario.getDNI())) {
+                System.out.println("\n[ERROR FATAL] El DNI " + nuevoUsuario.getDNI() + " ya está registrado. No se puede guardar.");
                 return;
             }
 
@@ -48,7 +49,7 @@ public class Main {
 
             if ("S".equals(confirmacion)) {
                 // 4. GUARDAR EN LA BASE DE DATOS
-                usuarioDAO.guardarDatosPersonales(nuevoUsuario);
+                usuarioDAO.registrar(nuevoUsuario);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
                 System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");

@@ -24,15 +24,24 @@ public class Usuario {
     private LinkedList<String> preferenciasGenero;
     private Fecha fechaNacimiento;
     private int DNI;
-    private int id;
-
-    public int getId() {
-        return id;
+    private int ID_USUARIO;
+    private int ID_DATOS_PERSONALES;
+        
+    
+    public int getID_DATOS_PERSONALES() {
+        return ID_DATOS_PERSONALES;
     }   
+    public void setID_DATOS_PERSONALES(int ID_DATOS_PERSONALES) {
+        this.ID_DATOS_PERSONALES = ID_DATOS_PERSONALES;
+    }
 
-    public void setId(int id) {
-        this.id = id;
-    }   
+    public int getID_USUARIO() {
+        return ID_USUARIO;
+    }
+
+    public void setID_USUARIO(int ID_USUARIO) {
+        this.ID_USUARIO = ID_USUARIO;
+    }
 
     public int getDNI() {
         return DNI;

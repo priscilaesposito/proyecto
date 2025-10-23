@@ -13,7 +13,7 @@ import model.Usuario;
 
 public class UsuarioDAOjdbc implements UsuarioDAO {
 
-    // Constante para el SQL con JOIN, evita repetir código
+    // Constante para el SQL con JOIN, evita repetir codigo
     private static final String SELECT_USUARIO_CON_DATOS = 
         "SELECT U.ID, U.NOMBRE_USUARIO, U.EMAIL, U.CONTRASENIA, " +
         "DP.ID AS DP_ID, DP.NOMBRES, DP.APELLIDO, DP.DNI " +
@@ -30,7 +30,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
             pstmt.setString(1, usuario.getUsername());
             pstmt.setString(2, usuario.getCorreo());
             pstmt.setString(3, usuario.getContrasenia());
-            pstmt.setInt(4, usuario.getId()); 
+            pstmt.setInt(4, usuario.getID_DATOS_PERSONALES());
             
             pstmt.executeUpdate();
             
@@ -84,8 +84,8 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
            pstmt.setString(1, usuario.getUsername());
             pstmt.setString(2, usuario.getCorreo());
             pstmt.setString(3, usuario.getContrasenia());
-            pstmt.setInt(4, usuario.getIdDatosPersonales());
-            pstmt.setInt(5, usuario.getId()); // ID para el WHERE
+            pstmt.setInt(4, usuario.getID_DATOS_PERSONALES());
+            pstmt.setInt(5, usuario.getID_USUARIO()); // ID para el WHERE
             
             pstmt.executeUpdate();
             
@@ -119,19 +119,16 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
      * Helper para convertir un ResultSet (con JOIN) en un objeto Usuario.
      */
     private Usuario mapResultSetToUsuario(ResultSet rs) throws SQLException {
-       Usuario datos = new Usuario();
-        datos.setId(rs.getInt("DP_ID"));
-        datos.setNombres(rs.getString("NOMBRES"));
-        datos.setApellido(rs.getString("APELLIDO"));
-        datos.setDni(rs.getInt("DNI"));
-
-        Usuario usuario = new Usuario();
-        usuario.setId(rs.getInt("ID"));
-        usuario.setNombreUsuario(rs.getString("NOMBRE_USUARIO"));
-        usuario.setEmail(rs.getString("EMAIL"));
-        usuario.setContrasenia(rs.getString("CONTRASENIA"));
-        usuario.setDatosPersonales(datos); 
         
+        Usuario usuario = new Usuario();
+        usuario.setID_USUARIO(rs.getInt("ID"));
+        usuario.setUsername(rs.getString("NOMBRE_USUARIO"));
+        usuario.setCorreo(rs.getString("EMAIL"));
+        usuario.setContrasenia(rs.getString("CONTRASENIA"));
+        usuario.setID_USUARIO(rs.getInt("DP_ID"));
+        usuario.setNombre(rs.getString("NOMBRES"));
+        usuario.setApellido(rs.getString("APELLIDO"));
+        usuario.setDNI(rs.getInt("DNI"));
         return usuario;
     }
 }
