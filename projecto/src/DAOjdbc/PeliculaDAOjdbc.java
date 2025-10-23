@@ -12,16 +12,16 @@ import DAO.PeliculaDAO;
 import DB.BaseDeDatos;
 import model.Titulo;
 
-public class PeliculaDAOJdbc implements PeliculaDAO {
+public class PeliculaDAOjdbc implements PeliculaDAO {
 
     @Override
     public void registrar(Titulo pelicula) {
         // [cite: 70-77]
-        String sql = "INSERT INTO PELICula (GENERO, TITULO, RESUMEN, DIRECTOR, DURACION) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PELICULA (GENERO, TITULO, RESUMEN, DIRECTOR, DURACION) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, pelicula.getGenero()); 
+            pstmt.setString(1, pelicula.getGeneros()); 
             pstmt.setString(2, pelicula.getTitulo());
             pstmt.setString(3, pelicula.getResumen());
             pstmt.setString(4, pelicula.getDirector());

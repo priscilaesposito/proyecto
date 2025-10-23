@@ -1,4 +1,3 @@
-
 package DAOjdbc;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ import DAO.UsuarioDAO;
 import DB.BaseDeDatos;
 import model.Usuario;
 
-public class UsuarioDAOJdbc implements UsuarioDAO {
+public class UsuarioDAOjdbc implements UsuarioDAO {
 
     // Constante para el SQL con JOIN, evita repetir código
     private static final String SELECT_USUARIO_CON_DATOS = 
