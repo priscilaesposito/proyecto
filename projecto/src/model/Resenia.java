@@ -1,12 +1,14 @@
 package model;
 
 import java.util.LinkedList;
-
+  APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) " +
+                       "VALUES (?, ?, 0, ?, ?, ?)";
 public class Resenia {
     private LinkedList<String> resenias;
     private double puntuacion;
     private int cantPuntuacion;
     private int sumaPuntuacion;
+    private
 
     private boolean moderacion(String resenia) {
         // Lógica para moderar la reseña, por ejemplo, buscar palabras no permitidas.

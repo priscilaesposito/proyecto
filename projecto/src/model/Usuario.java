@@ -23,8 +23,26 @@ public class Usuario {
     private String idioma;
     private LinkedList<String> preferenciasGenero;
     private Fecha fechaNacimiento;
+    private int DNI;
+    private int id;
 
+    public int getId() {
+        return id;
+    }   
 
+    public void setId(int id) {
+        this.id = id;
+    }   
+
+    public int getDNI() {
+        return DNI;
+    }       
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }   
+
+     
     /**
      * Constructor donde inicializo toda la informacion del usuario.
      * 

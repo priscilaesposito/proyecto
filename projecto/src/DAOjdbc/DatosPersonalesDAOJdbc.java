@@ -23,7 +23,7 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
             
             pstmt.setString(1, datos.getNombre());
             pstmt.setString(2, datos.getApellido());
-            pstmt.setInt(3, datos.getDni());
+            pstmt.setInt(3, datos.getDNI());
             pstmt.executeUpdate();
             
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     }
 
     @Override
-    public DatosPersonales buscarPorId(int id) {
+    public Usuario buscarPorId(int id) {
         String sql = "SELECT * FROM DATOS_PERSONALES WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -50,8 +50,8 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     }
 
     @Override
-    public List<DatosPersonales> listarTodos() {
-        List<DatosPersonales> lista = new ArrayList<>();
+    public List<Usuario> listarTodos() {
+        List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM DATOS_PERSONALES";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -72,9 +72,9 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, datos.getNombres());
+            pstmt.setString(1, datos.getNombre());
             pstmt.setString(2, datos.getApellido());
-            pstmt.setInt(3, datos.getDni());
+            pstmt.setInt(3, datos.getDNI());
             pstmt.setInt(4, datos.getId()); // ID para el WHERE
             
             pstmt.executeUpdate();
@@ -108,9 +108,9 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     private Usuario mapResultSetToDatosPersonales(ResultSet rs) throws SQLException {
         Usuario datos = new Usuario();
         datos.setId(rs.getInt("ID"));
-        datos.setNombres(rs.getString("NOMBRES"));
+        datos.setNombre(rs.getString("NOMBRES"));
         datos.setApellido(rs.getString("APELLIDO"));
-        datos.setDni(rs.getInt("DNI"));
+        datos.setDNI(rs.getInt("DNI"));
         return datos;
     }
 
