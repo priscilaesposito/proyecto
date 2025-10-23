@@ -37,10 +37,5 @@ public interface UsuarioDAO {
      */
     Usuario validar(String nombreUsuario, String contrasenia) throws SQLException;
 
-    /**
-     * Verifica si existe un DNI en la base de datos.
-     * @param dni El DNI a verificar
-     * @return true si el DNI ya existe, false si no existe
-     */
-    boolean existeDNI(int dni) throws SQLException;
+
 }

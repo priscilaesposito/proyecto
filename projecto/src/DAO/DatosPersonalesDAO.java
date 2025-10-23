@@ -2,6 +2,8 @@
 package DAO;
 
 import model.Usuario;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface DatosPersonalesDAO {
@@ -33,4 +35,12 @@ public interface DatosPersonalesDAO {
      * (Validación 1) 
      */
     Usuario buscarPorDni(int dni);
+
+
+    /**
+     * Verifica si existe un DNI en la base de datos.
+     * @param dni El DNI a verificar
+     * @return true si el DNI ya existe, false si no existe
+     */
+    boolean existeDNI(int dni);
 }

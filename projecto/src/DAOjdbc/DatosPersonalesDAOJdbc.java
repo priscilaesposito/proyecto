@@ -16,7 +16,6 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
 
     @Override
     public void registrar(Usuario datos) {
-        // [cite: 63-68]
         String sql = "INSERT INTO DATOS_PERSONALES (NOMBRES, APELLIDO, DNI) VALUES (?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -115,5 +114,20 @@ public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
     }
 
     
-
+    @Override
+    public boolean existeDNI(int dni) throws SQLException {
+        String sql= "SELECT * from datos_personales where dni = ?;";
+       
+        try (Connection conn = BaseDeDatos.conectar();           
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, dni);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+           throw new SQLException ("Error en la busqueda ")
+        }
+    }
+    
 }

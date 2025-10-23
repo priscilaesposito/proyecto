@@ -1,10 +1,11 @@
 package model;
 
 import model.Usuario;
-
-import UsuarioDAOjdbc;
+import DAO.DatosPersonalesDAO;
+import DAOjdbc.DatosPersonalesDAOjdbc;
 
 public class GestionUsuario {
+    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOjdbc();
 
 	public void configurarIdioma() {
 		// TODO: Implement configurarIdioma
@@ -18,14 +19,12 @@ public class GestionUsuario {
 		// TODO: Implement configurarPreferencias
 	}
 
-	public boolean dniUnico(int dni){
-		DAOjdbc.UsuarioDAOjdbc UDJ= new DAOjdbc.UsuarioDAOjdbc();
+	private boolean dniUnico(int dni){
         return UDJ.existeDNI(dni);
 	}
 	
 	public Usuario registrarse(Usuario usuario) {
 		
-
 		return usuario;
 	}
 	
