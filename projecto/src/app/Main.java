@@ -35,12 +35,11 @@ public class Main {
                 System.out.println("\n[ERROR FATAL] El DNI " + nuevoUsuario.getDNI() + " ya está registrado. No se puede guardar.");
                 return;
             }
-
+            
             // 3. MOSTRAR Y CONFIRMAR al usuario
             mostrarDatosIngresados(nuevoUsuario);
-            
-            System.out.print("\n¿Son estos datos correctos? (S/N): ");
-            String confirmacion = scanner.nextLine().trim().toUpperCase();
+            System.out.println("\n¿Son estos datos correctos? (S/N): ");
+            String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
                 // 4. GUARDAR EN LA BASE DE DATOS
@@ -56,9 +55,7 @@ public class Main {
         }
     }
     
-    /**
-     * Método auxiliar para mostrar los datos ingresados.
-     */
+
     private static void mostrarDatosIngresados(Usuario u) {
         System.out.println("\n--- DATOS INGRESADOS ---");
         System.out.println("DNI: " + u.getDNI());
