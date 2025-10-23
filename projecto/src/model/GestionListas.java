@@ -14,6 +14,7 @@ package model;
 //import java.util.LinkedList;
 
 public class GestionListas {
+     hola
      public LinkedList<Titulo> miLista;
      public LinkedList<Titulo> recomendacion;
      public LinkedList<Titulo> historialVisualizacion;
