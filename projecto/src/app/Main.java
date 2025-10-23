@@ -21,39 +21,14 @@ import java.util.Arrays;
  */
 public class Main {
 
-     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
+    private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
     private static Scanner scanner = new Scanner(System.in);
     
-    /**
-     * Implementa la funcionalidad 1: Registrar Datos Personales.
-     * Coordina la entrada de datos, la validación de unicidad y la persistencia.
-     */
     public static void registrarUsuario() {
         
-        // 1. SOLICITAR DATOS Y VALIDAR FORMATO (Llamada al método estático de Usuario)
+        // 1. SOLICITAR DATOS 
         Usuario nuevoUsuario = new Usuario();
-        System.out.println("Ingrese DNI:");
-        nuevoUsuario.setDNI(scanner.nextInt());
-        System.out.println("Ingrese Nombre:");
-        nuevoUsuario.setNombre(scanner.nextLine());
-        System.out.println("Ingrese Apellido:");
-        nuevoUsuario.setApellido(scanner.nextLine());
-        System.out.println("Ingrese username:");
-        nuevoUsuario.setUsername(scanner.nextLine());
-        System.out.println("Ingrese Correo:");
-        nuevoUsuario.setCorreo(scanner.nextLine());
-        System.out.println("Ingrese Contrasenia:");
-        nuevoUsuario.setContrasenia(scanner.nextLine());
-         System.out.println("Ingrese Dia de Nacimiento:");
-         Fecha f= new Fecha();
-        f.setDia(scanner.nextInt());
-        System.out.println("Ingrese Mes de Nacimiento:");
-        f.setMes(scanner.nextInt());
-        System.out.println("Ingrese Año de Nacimiento:");
-        f.setAnio(scanner.nextInt());
-         nuevoUsuario.setFechaNacimiento(f);
-
-
+        solicitarDatosUsuario(nuevoUsuario);
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
             if (usuarioDAO.existeDNI(nuevoUsuario.getDNI())) {
@@ -94,7 +69,29 @@ public class Main {
         System.out.println("Idioma: " + u.getIdioma());
         System.out.println("Fecha Nacimiento: " + u.getFechaNacimiento());
     }
-    
+    private static void solicitarDatosUsuario(Usuario nuevoUsuario){
+        System.out.println("Ingrese DNI:");
+        nuevoUsuario.setDNI(scanner.nextInt());
+        System.out.println("Ingrese Nombre:");
+        nuevoUsuario.setNombre(scanner.nextLine());
+        System.out.println("Ingrese Apellido:");
+        nuevoUsuario.setApellido(scanner.nextLine());
+        System.out.println("Ingrese username:");
+        nuevoUsuario.setUsername(scanner.nextLine());
+        System.out.println("Ingrese Correo:");
+        nuevoUsuario.setCorreo(scanner.nextLine());
+        System.out.println("Ingrese Contrasenia:");
+        nuevoUsuario.setContrasenia(scanner.nextLine());
+         System.out.println("Ingrese Dia de Nacimiento:");
+         Fecha f= new Fecha();
+        f.setDia(scanner.nextInt());
+        System.out.println("Ingrese Mes de Nacimiento:");
+        f.setMes(scanner.nextInt());
+        System.out.println("Ingrese Año de Nacimiento:");
+        f.setAnio(scanner.nextInt());
+         nuevoUsuario.setFechaNacimiento(f);
+
+    }
     public static void main(String[] args) {
         try {
             // Inicializar la conexión (opcional, pero buena práctica)
