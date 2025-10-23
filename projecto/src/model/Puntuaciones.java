@@ -1,4 +1,4 @@
-package model
+package model;
 
 /**
  * Lista de las puntuaciones hechas por {@link Cliente}

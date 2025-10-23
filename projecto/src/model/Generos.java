@@ -1,4 +1,4 @@
-package model
+package model;
 
 /**
  * Lista de los generos vistos por {@link Cliente}

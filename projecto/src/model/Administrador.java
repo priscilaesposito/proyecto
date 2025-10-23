@@ -1,4 +1,4 @@
-package model
+package model;
 
 /**
  * Administrador se hereda de {@link Usuario}

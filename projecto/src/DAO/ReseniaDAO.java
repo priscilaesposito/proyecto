@@ -1,58 +1,42 @@
+
 package DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import model.ListasyResenias;
 import java.util.List;
 
-import model.ListasyResenias;
-
-import java.util.ArrayList;
-
-/**
- * DAO para la gestión de la tabla RESENIA.
- */
-public class ReseniaDAO {
+public interface ReseniaDAO {
 
     /**
-     * Funcionalidad 6: Guarda una nueva reseña en la BD. [cite: 139]
-     * * @param resenia El objeto Resenia a insertar.
+     * Create: Agrega una nueva reseña a la base de datos.
+     * (Funcionalidad 6) [cite: 133]
      */
-    public void registrarResenia(ListasyResenias resenia) throws SQLException {
-        String sql = "INSERT INTO RESENIA (CALIFICACION, COMENTARIO, APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) VALUES (?, ?, ?, ?, ?, ?)";
-        // ... (código para PreparedStatement, APROBADO se inserta como 0 o false)
-    }
+    void registrar(ListasyResenias resenia);
 
     /**
-     * Funcionalidad 7: Muestra las reseñas NO aprobadas. [cite: 141]
-     * * @return Una lista de objetos Resenia que no están aprobadas (APROBADO = 0).
+     * Read (One): Lee de la base de datos y devuelve una reseña por su ID.
+     * (Necesario para Funcionalidad 7) [cite: 143]
      */
-    public List<ListasyResenias> listarReseniasNoAprobadas() throws SQLException {
-        String sql = "SELECT * FROM RESENIA WHERE APROBADO = 0";
-        // ... (código para ejecutar el query y poblar la lista)
-        // NOTA: Deberás "completar" los objetos Usuario y Pelicula de cada Resenia
-        // llamando a los otros DAOs (ej: UsuarioDAO.getUsuarioPorId)
-        return new ArrayList<>(); // Placeholder
-    }
+    ListasyResenias buscarPorId(int id);
 
     /**
-     * Funcionalidad 7: Obtiene una reseña específica por su ID. [cite: 143]
-     * * @param idResenia El ID de la reseña a buscar.
-     * @return El objeto Resenia, o null si no se encuentra.
+     * Read (All): Lee de la base de datos y devuelve todas las reseñas.
      */
-    public ListasyResenias getReseniaPorId(int idResenia) throws SQLException {
-        String sql = "SELECT * FROM RESENIA WHERE ID = ?";
-        // ... (código para buscar la reseña)
-        return null; // Placeholder
-    }
+    List<ListasyResenias> listarTodos();
 
     /**
-     * Funcionalidad 7: Aprueba una reseña cambiando su estado en la BD. [cite: 147]
-     * * @param idResenia El ID de la reseña a aprobar.
+     * Update: Modifica una reseña existente en la base de datos.
      */
-    public void aprobarResenia(int idResenia) throws SQLException {
-        String sql = "UPDATE RESENIA SET APROBADO = 1 WHERE ID = ?";
-        // ... (código para PreparedStatement y executeUpdate)
-    }
+    void actualizar(ListasyResenias resenia);
+
+    /**
+     * Read (Specific): Devuelve un listado de reseñas NO aprobadas.
+     * (Funcionalidad 7) 
+     */
+    List<ListasyResenias> listarNoAprobadas();
+
+    /**
+     * Update (Specific): Aprueba una reseña específica por su ID.
+     * (Funcionalidad 7) 
+     */
+    void aprobarResenia(int idResenia);
 }

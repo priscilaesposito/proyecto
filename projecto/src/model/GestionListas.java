@@ -1,4 +1,4 @@
-package model
+package model;
 
 /**
  * Listas las cuales puede recorrer {@link Cliente} 

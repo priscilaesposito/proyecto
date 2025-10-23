@@ -1,63 +1,36 @@
+
 package DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import model.Usuario;
 import java.util.List;
 
-import model.Usuario;
-
-import java.util.ArrayList;
-
-/**
- * DAO para la gestión de la tabla DATOS_PERSONALES.
- */
-public class DatosPersonalesDAO {
+public interface DatosPersonalesDAO {
 
     /**
-     * Funcionalidad 1: Registra una nueva persona en la BD. [cite: 98]
-     * * @param datos El objeto Usuario a insertar.
-     * @return el ID generado para la persona registrada.
+     * Create: Agrega nuevos datos personales a la base de datos.
+     * (Funcionalidad 1) [cite: 95]
      */
-    public int registrarDatosPersonales(Usuario datos) throws SQLException {
-        String sql = "INSERT INTO DATOS_PERSONALES (NOMBRES, APELLIDO, DNI) VALUES (?, ?, ?)";
-        // ... (código para PreparedStatement y executeUpdate)
-        // ... (debe retornar el ID generado)
-        return 0; // Placeholder
-    }
+    void registrar(Usuario datos);
 
     /**
-     * Funcionalidad 1 (Validación): Verifica si un DNI ya existe. [cite: 101]
-     * * @param dni El DNI a verificar.
-     * @return true si el DNI ya existe, false en caso contrario.
+     * Read (One): Lee de la base de datos y devuelve datos personales por su ID.
      */
-    public boolean verificarDniUnico(int dni) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM DATOS_PERSONALES WHERE DNI = ?";
-        // ... (código para PreparedStatement y executeQuery)
-        return false; // Placeholder
-    }
+    Usuario buscarPorId(int id);
 
     /**
-     * Funcionalidad 2: Lista las personas que aún no tienen un usuario asociado.
-     * [cite: 107]
-     * * @return Una lista de objetos Usuario.
+     * Read (All): Lee de la base de datos y devuelve todas las personas.
+     * (Necesario para Funcionalidad 2) [cite: 107]
      */
-    public List<Usuario> listarPersonasSinUsuario() throws SQLException {
-        String sql = "SELECT * FROM DATOS_PERSONALES WHERE ID NOT IN (SELECT ID_DATOS_PERSONALES FROM USUARIO)";
-        // ... (código para ejecutar el query y poblar una lista)
-        return new ArrayList<>(); // Placeholder
-    }
+    List<Usuario> listarTodos();
 
     /**
-     * Método de ayuda para la Funcionalidad 4: Obtiene los datos de una persona
-     * por su ID.
-     * * @param id El ID de la persona.
-     * @return Un objeto Usuario.
+     * Update: Modifica datos personales existentes en la base de datos.
      */
-    public Usuario getDatosPersonalesPorId(int id) throws SQLException {
-        String sql = "SELECT * FROM DATOS_PERSONALES WHERE ID = ?";
-        // ... (código para buscar y devolver el objeto)
-        return null; // Placeholder
-    }
+    void actualizar(Usuario datos);
+
+    /**
+     * Read (Specific): Busca datos personales por DNI para validación.
+     * (Validación 1) 
+     */
+    Usuario buscarPorDni(int dni);
 }

@@ -1,4 +1,4 @@
-package model
+package model;
 
 /**
  * Esta clase guarda la fecha de nacimiento de {@link Usuario}
