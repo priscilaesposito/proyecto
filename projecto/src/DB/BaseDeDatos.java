@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BaseDeDatos {
-
+     //hola
     private String url = "jdbc:sqlite:plataforma_streaming.db";
 
     /**
