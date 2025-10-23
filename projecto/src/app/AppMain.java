@@ -1,9 +1,11 @@
 package app;
 
-import DB.UsuarioDAO;
 import model.Usuario;
 
 import java.util.Scanner;
+
+import DAO.UsuarioDAO;
+
 import java.sql.SQLException;
 
 /**
