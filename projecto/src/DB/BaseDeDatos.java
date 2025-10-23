@@ -12,8 +12,9 @@ public class BaseDeDatos {
      * Método público para obtener conexión a la base de datos.
      * Utiliza la clase conexion para establecer la conexión.
      * @return Connection objeto de conexión a la base de datos
+     * @throws SQLException si hay un error al conectar con la base de datos
      */
-    public static Connection conectar() {
+    public static Connection conectar() throws SQLException {
         return conexion.conectar();
     }
 

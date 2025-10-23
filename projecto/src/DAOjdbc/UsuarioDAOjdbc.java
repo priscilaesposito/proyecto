@@ -131,5 +131,10 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         usuario.setDNI(rs.getInt("DNI"));
         return usuario;
     }
+
+    @Override
+    public boolean existeDNI(int dni) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
 

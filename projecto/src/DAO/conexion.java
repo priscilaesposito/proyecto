@@ -12,17 +12,19 @@ public class conexion {
     /**
      * Establece una conexión con la base de datos SQLite.
      * Si el archivo de la base de datos no existe, SQLite lo creará.
-     * * @return un objeto Connection
+     * @return un objeto Connection
+     * @throws SQLException si hay un error al conectar con la base de datos
      */
-    public static Connection conectar() {
+    public static Connection conectar() throws SQLException {
         Connection connection = null;
         try {
             // Cargar el driver JDBC de SQLite
             Class.forName("org.sqlite.JDBC");
             // Crear la conexión
             connection = DriverManager.getConnection(DB_URL);
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Error al conectar con la base de datos SQLite: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error: Driver JDBC de SQLite no encontrado: " + e.getMessage());
+            throw new SQLException("Driver JDBC no encontrado", e);
         }
         return connection;
     }
