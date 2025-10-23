@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedList;
 
 import DAO.PeliculaDAO;
 import DB.BaseDeDatos;
 import model.Titulo;
+import model.Pelicula;
 
 public class PeliculaDAOjdbc implements PeliculaDAO {
 
@@ -21,11 +23,19 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, pelicula.getGeneros()); 
-            pstmt.setString(2, pelicula.getTitulo());
-            pstmt.setString(3, pelicula.getResumen());
-            pstmt.setString(4, pelicula.getDirector());
-            pstmt.setDouble(5, pelicula.getDuracion());
+                //pri
+            LinkedList<String> generos = pelicula.getGeneros();
+            int k;
+            String genero = "";
+            for (k = 0; k < generos.size() - 1; k++) {
+                genero += generos.get(k) + ", ";
+                
+            }
+            pstmt.setString(1, genero); 
+            pstmt.setString(2, pelicula.getMetadatos().getTitulo());
+            pstmt.setString(3, pelicula.getMetadatos().getSipnosis());
+            pstmt.setString(4, pelicula.getMetadatos().getDirector());
+            pstmt.setDouble(5, pelicula.getVideo().getDuracion());
             
             pstmt.executeUpdate();
 
@@ -76,11 +86,19 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, pelicula.getGenero()); 
-            pstmt.setString(2, pelicula.getTitulo());
-            pstmt.setString(3, pelicula.getResumen());
-            pstmt.setString(4, pelicula.getDirector());
-            pstmt.setDouble(5, pelicula.getDuracion());
+               //pri
+            LinkedList<String> generos = pelicula.getGeneros();
+            int k;
+            String genero = "";
+            for (k = 0; k < generos.size() - 1; k++) {
+                genero += generos.get(k) + ", ";
+                
+            }
+            pstmt.setString(1, genero); 
+            pstmt.setString(2, pelicula.getMetadatos().getTitulo());
+            pstmt.setString(3, pelicula.getMetadatos().getSipnosis());
+            pstmt.setString(4, pelicula.getMetadatos().getDirector());
+            pstmt.setDouble(5, pelicula.getVideo().getDuracion());
             pstmt.setInt(6, pelicula.getId()); // ID para el WHERE
             
             pstmt.executeUpdate();
@@ -96,11 +114,20 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     private Titulo mapResultSetToPelicula(ResultSet rs) throws SQLException {
         Titulo p = new Titulo();
         p.setId(rs.getInt("ID"));
-        p.setTitulo(rs.getString("TITULO"));
-        p.setGenero(rs.getString("GENERO"));
-        p.setResumen(rs.getString("RESUMEN"));
-        p.setDirector(rs.getString("DIRECTOR"));
-        p.setDuracion(rs.getDouble("DURACION"));
+        p.getMetadatos().setTitulo(rs.getString("TITULO"));
+        
+        // Procesar géneros: dividir el string por comas y agregar cada uno a la lista
+        String generos = rs.getString("GENERO");
+        if (generos != null) {
+            for (String genero : generos.split(",")) {
+            p.anadirGeneros(genero.trim());
+            }
+        }
+        
+        p.getMetadatos().setSipnosis(rs.getString("RESUMEN"));
+        p.getMetadatos().setDirector(rs.getString("DIRECTOR"));
+        // Nota: La duración se maneja en la clase Video, no directamente en Titulo
+        
         return p;
     }
 }

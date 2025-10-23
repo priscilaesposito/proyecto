@@ -8,9 +8,25 @@ public class Titulo {
     private String tipoContenido;
     private LinkedList<String> generos;
     private LinkedList<String> paisesDisponible;
+    private metadatos Metadatos;
+    private ListasyResenias LR; 
 
+    public ListasyResenias getListasyResenias() {
+        return LR;
+    }
+    public void setListasyResenias(ListasyResenias lR) {
+        LR = lR;
+    }
     public void setCantVisualizaciones(int cantVisualizaciones) {
         this.cantVisualizaciones = cantVisualizaciones;
+    }
+
+    public metadatos getMetadatos() {
+        return Metadatos;
+    }
+
+    public void setMetadatos(metadatos metadatos) {
+        Metadatos = metadatos;
     }
 
     public int getCantVisualizaciones() {
