@@ -1,11 +1,13 @@
 package DB;
 
-import Entregable1.ListasyResenias;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import model.ListasyResenias;
+
 import java.util.ArrayList;
 
 /**
