@@ -2,10 +2,10 @@ package model;
 
 import model.Usuario;
 import DAO.DatosPersonalesDAO;
-import DAOjdbc.DatosPersonalesDAOjdbc;
+import DAOjdbc.DatosPersonalesDAOJdbc;
 
 public class GestionUsuario {
-    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOjdbc();
+    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
 
 	public void configurarIdioma() {
 		// TODO: Implement configurarIdioma
