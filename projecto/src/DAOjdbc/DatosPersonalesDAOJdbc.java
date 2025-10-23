@@ -12,7 +12,7 @@ import DAO.DatosPersonalesDAO;
 import DB.BaseDeDatos;
 import model.Usuario;
 
-public class DatosPersonalesDAOjdbc implements DatosPersonalesDAO {
+public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
 
     @Override
     public void registrar(Usuario datos) {
