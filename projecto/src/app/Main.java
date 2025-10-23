@@ -5,6 +5,7 @@ import model.Usuario;
 import java.util.Scanner;
 
 import DAO.UsuarioDAO;
+import DAO.conexion;
 import DAOjdbc.UsuarioDAOjdbc;
 
 import java.sql.SQLException;
@@ -55,7 +56,8 @@ public class Main {
                 System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");
             }
 
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
@@ -65,7 +67,7 @@ public class Main {
      */
     private static void mostrarDatosIngresados(Usuario u) {
         System.out.println("\n--- DATOS INGRESADOS ---");
-        System.out.println("DNI: " + u.getDni());
+        System.out.println("DNI: " + u.getDNI());
         System.out.println("Nombre: " + u.getNombre());
         System.out.println("Apellido: " + u.getApellido());
         System.out.println("Correo: " + u.getCorreo());
@@ -77,12 +79,15 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Inicializar la conexión (opcional, pero buena práctica)
-            ConexionDB.getConnection(); 
+            conexion.conectar(); 
             registrarUsuario();
-        } catch (SQLException e) {
-            System.err.println("Error al iniciar la aplicación: La conexión a la BD falló.");
-        } finally {
-            ConexionDB.closeConnection(); // Cierra la conexión al finalizar
+        } 
+        catch (SQLException e) {
+            System.out.println("Error al iniciar la aplicación: La conexión a la BD falló.");
+        } 
+
+        finally {
+            conexion.desconectar(); // Cierra la conexión al finalizar
             scanner.close();
         }
     }

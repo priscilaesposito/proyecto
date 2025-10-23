@@ -27,4 +27,15 @@ public class conexion {
         return connection;
     }
 
+    public static void desconectar() {
+        try {
+            Connection connection = conectar();
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al desconectar de la base de datos SQLite: " + e.getMessage());
+        }
+    }
+
 }

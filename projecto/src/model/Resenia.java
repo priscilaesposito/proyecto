@@ -1,7 +1,5 @@
 package model;
 
-import java.util.LinkedList;
-
 public class Resenia {
     private int calificacion;
     private String comentario;
@@ -68,7 +66,7 @@ public class Resenia {
         this.aprobado = aprobado;
     }
 
-    public void setFecha_hora(String fechaHora) {
+    public void setFechaHora(String fechaHora) {
         this.fechaHora = fechaHora;
     }
 

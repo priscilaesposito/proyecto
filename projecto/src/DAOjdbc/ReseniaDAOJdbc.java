@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
             pstmt.setInt(1, resenia.getCalificacion());
             pstmt.setString(2, resenia.getComentario());
             pstmt.setInt(3, resenia.isAprobado()); 
-            pstmt.setTimestamp(4, Timestamp.valueOf(resenia.getFechaHora())); 
+            pstmt.setString(4, resenia.getFechaHora()); 
             pstmt.setInt( 5, resenia.getID_Usuario());
             pstmt.setInt(6, resenia.getID_Pelicula());
             
@@ -82,8 +81,8 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
             
             pstmt.setInt(1, resenia.getCalificacion());
             pstmt.setString(2, resenia.getComentario());
-            pstmt.setInt(3, resenia.isAprobado() ? 1 : 0);
-            pstmt.setTimestamp(4, Timestamp.valueOf(resenia.getFechaHora()));
+            pstmt.setInt(3, resenia.isAprobado() );
+            pstmt.setString(4, resenia.getFechaHora());
             pstmt.setInt(5, resenia.getID_Usuario());
             pstmt.setInt(6, resenia.getID_Pelicula());
             pstmt.setInt(7, resenia.getID_Resenia()); 
@@ -97,7 +96,6 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
 
     @Override
     public List<Resenia> listarNoAprobadas() {
-        // 
         List<Resenia> lista = new ArrayList<>();
         String sql = "SELECT * FROM RESENIA WHERE APROBADO = 0";
 
@@ -116,7 +114,6 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
 
     @Override
     public void aprobarResenia(int idResenia) {
-        // 
         String sql = "UPDATE RESENIA SET APROBADO = 1 WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -141,8 +138,5 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
         return resenia;
     }
 
-    @Override
-    public void actualizar(Resenia resenia) {
-        throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
-    }
+  
 }
