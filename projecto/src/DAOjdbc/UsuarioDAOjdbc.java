@@ -27,10 +27,10 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, usuario.getNombreUsuario());
-            pstmt.setString(2, usuario.getEmail());
+            pstmt.setString(1, usuario.getUsername());
+            pstmt.setString(2, usuario.getCorreo());
             pstmt.setString(3, usuario.getContrasenia());
-            pstmt.setInt(4, usuario.getDatosPersonales().getId()); 
+            pstmt.setInt(4, usuario.getId()); 
             
             pstmt.executeUpdate();
             
@@ -81,10 +81,10 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, usuario.getNombreUsuario());
-            pstmt.setString(2, usuario.getEmail());
+           pstmt.setString(1, usuario.getUsername());
+            pstmt.setString(2, usuario.getCorreo());
             pstmt.setString(3, usuario.getContrasenia());
-            pstmt.setInt(4, usuario.getDatosPersonales().getId());
+            pstmt.setInt(4, usuario.getIdDatosPersonales());
             pstmt.setInt(5, usuario.getId()); // ID para el WHERE
             
             pstmt.executeUpdate();

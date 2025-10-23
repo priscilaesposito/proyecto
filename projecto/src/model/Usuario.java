@@ -17,6 +17,7 @@ import java.util.LinkedList;
 public class Usuario {
 	public String nombre;
     public String apellido;
+    public String username;
     public String correo;
     public String contrasenia;
     public String idioma;
@@ -80,6 +81,13 @@ public class Usuario {
         this.apellido = apellido;
     }
 
+    public String getUsername() {
+        return username;
+    }   
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     /**
      * Obtiene el apellido del usuario.
      * 

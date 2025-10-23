@@ -1,4 +1,4 @@
-// Archivo: src/daojdbc/PeliculaDAOJdbc.java
+
 package DAOjdbc;
 
 import java.sql.Connection;
@@ -17,7 +17,7 @@ import model.Pelicula;
 public class PeliculaDAOjdbc implements PeliculaDAO {
 
     @Override
-    public void registrar(Titulo pelicula) {
+    public void registrar(Pelicula pelicula) {
         // [cite: 70-77]
         String sql = "INSERT INTO PELICULA (GENERO, TITULO, RESUMEN, DIRECTOR, DURACION) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
@@ -45,7 +45,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     }
 
     @Override
-    public Titulo buscarPorId(int id) {
+    public Pelicula buscarPorId(int id) {
         String sql = "SELECT * FROM PELICULA WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -63,8 +63,8 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     }
 
     @Override
-    public List<Titulo> listarTodos() {
-        List<Titulo> peliculas = new ArrayList<>();
+    public List<Pelicula> listarTodos() {
+        List<Pelicula> peliculas = new ArrayList<>();
         String sql = "SELECT * FROM PELICULA";
         
         try (Connection conn = BaseDeDatos.conectar();
@@ -81,7 +81,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     }
 
     @Override
-    public void actualizar(Titulo pelicula) {
+    public void actualizar(Pelicula pelicula) {
         String sql = "UPDATE PELICULA SET GENERO = ?, TITULO = ?, RESUMEN = ?, DIRECTOR = ?, DURACION = ? WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -111,8 +111,8 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     /**
      * Helper para convertir un ResultSet en un objeto Pelicula.
      */
-    private Titulo mapResultSetToPelicula(ResultSet rs) throws SQLException {
-        Titulo p = new Titulo();
+    private Pelicula mapResultSetToPelicula(ResultSet rs) throws SQLException {
+        Pelicula p = new Pelicula();
         p.setId(rs.getInt("ID"));
         p.getMetadatos().setTitulo(rs.getString("TITULO"));
         
@@ -126,8 +126,8 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
         
         p.getMetadatos().setSipnosis(rs.getString("RESUMEN"));
         p.getMetadatos().setDirector(rs.getString("DIRECTOR"));
-        // Nota: La duración se maneja en la clase Video, no directamente en Titulo
-        
+        // Nota: La duración se maneja en la clase Video, no directamente en Pelicula
+
         return p;
     }
 }
