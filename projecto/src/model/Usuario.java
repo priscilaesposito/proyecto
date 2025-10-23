@@ -15,14 +15,15 @@ import java.util.LinkedList;
 
 
 public class Usuario {
-	public String nombre;
-    public String apellido;
-    public String username;
-    public String correo;
-    public String contrasenia;
-    public String idioma;
-    public LinkedList<String> preferenciasGenero;
-    public Fecha fechaNacimiento;
+	private String nombre;
+    private String apellido;
+    private String username;
+    private String correo;
+    private String contrasenia;
+    private String idioma;
+    private LinkedList<String> preferenciasGenero;
+    private Fecha fechaNacimiento;
+
 
     /**
      * Constructor donde inicializo toda la informacion del usuario.

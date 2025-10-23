@@ -11,8 +11,8 @@ package model;
  */
 
 public class Puntuaciones {
-	    public String titulo;
-	    public int puntuacion;
+	    private String titulo;
+	    private  int puntuacion;
 
 	    public Puntuaciones() {
 	    }

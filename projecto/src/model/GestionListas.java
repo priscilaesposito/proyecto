@@ -14,13 +14,12 @@ package model;
 //import java.util.LinkedList;
 
 public class GestionListas {
-     // public LinkedList<Titulo> miLista;
-     // public LinkedList<Titulo> recomendacion;
-     // public LinkedList<Titulo> historialVisualizacion;
-     // public LinkedList<Generos> misGeneros;
-     // public LinkedList<Puntuaciones> misPuntuaciones;
-
-     // public GestionListas() {
+     public LinkedList<Titulo> miLista;
+     public LinkedList<Titulo> recomendacion;
+     public LinkedList<Titulo> historialVisualizacion;
+     private ublic LinkedList<Generos> misGeneros;
+     public LinkedList<Puntuaciones> misPuntuaciones;
+public GestionListas() {
      // this.miLista = new LinkedList<Titulo>();
      // this.recomendacion = new LinkedList<Titulo>();
      // this.historialVisualizacion = new LinkedList<Titulo>();
