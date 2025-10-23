@@ -2,6 +2,15 @@ package model;
 
 public class Pelicula extends Titulo {
     private Video video;
+    private int ID;
+    
+    public int getID() {
+        return ID;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    
 
     public Video getVideo() {
         return video;

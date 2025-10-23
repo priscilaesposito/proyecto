@@ -99,7 +99,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
             pstmt.setString(3, pelicula.getMetadatos().getSipnosis());
             pstmt.setString(4, pelicula.getMetadatos().getDirector());
             pstmt.setDouble(5, pelicula.getVideo().getDuracion());
-            pstmt.setInt(6, pelicula.getId()); // ID para el WHERE
+            pstmt.setInt(6, pelicula.getID()); // ID para el WHERE
             
             pstmt.executeUpdate();
 
@@ -113,7 +113,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
      */
     private Pelicula mapResultSetToPelicula(ResultSet rs) throws SQLException {
         Pelicula p = new Pelicula();
-        p.setId(rs.getInt("ID"));
+        p.setID(rs.getInt("ID"));
         p.getMetadatos().setTitulo(rs.getString("TITULO"));
         
         // Procesar géneros: dividir el string por comas y agregar cada uno a la lista
