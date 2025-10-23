@@ -74,9 +74,13 @@ public class Main {
         nuevoUsuario.setDNI(scanner.nextInt());
         scanner.nextLine(); // Consumir el salto de línea pendiente
         System.out.println("Ingrese Nombre:");
-        nuevoUsuario.setNombre(scanner.nextLine());
+        String linea=scanner.nextLine();
+        Valido(linea);
+        nuevoUsuario.setNombre(linea);
         System.out.println("Ingrese Apellido:");
-        nuevoUsuario.setApellido(scanner.nextLine());
+        linea = scanner.nextLine();
+        Valido(linea);
+        nuevoUsuario.setApellido(linea);
         System.out.println("Ingrese username:");
         nuevoUsuario.setUsername(scanner.nextLine());
         System.out.println("Ingrese Correo:");
@@ -93,6 +97,19 @@ public class Main {
          nuevoUsuario.setFechaNacimiento(f);
 
     }
+    private static void Valido(String linea) {
+    	LinkedList<Character> caracteresInvalidos = new LinkedList<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9','!','"','#','$','%','&','/','(',')','=','?','¡','¿','+','-','*','{','}','[',']','^','`','´','¨',';',':','.',','));
+    	for (char c : linea.toCharArray()) {
+    		if (caracteresInvalidos.contains(c)) {
+    			System.out.println("El nombre no debe contener números ni caracteres especiales. Ingrese nuevamente:");
+    			String nuevaLinea = scanner.nextLine();
+    			Valido(nuevaLinea);
+    			return;
+    		}
+    	}
+    	return;
+    }
+
     public static void main(String[] args) {
         try {
             // Inicializar la conexión (opcional, pero buena práctica)
