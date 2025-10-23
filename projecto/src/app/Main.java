@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * 1. Usuario.solicitarDatos() (para la interacción y validación de formato).
  * 2. UsuarioDAO (para la validación de unicidad y persistencia).
  */
-public class AppMain {
+public class Main {
 
     private static UsuarioDAO usuarioDAO = new UsuarioDAO();
     private static Scanner scanner = new Scanner(System.in);
