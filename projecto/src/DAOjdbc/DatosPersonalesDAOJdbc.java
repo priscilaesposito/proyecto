@@ -126,8 +126,8 @@ public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
                 return rs.next();
             }
         } catch (SQLException e) {
-           throw new SQLException ("Error en la busqueda ")
+           throw new SQLException ("Error en la busqueda ", e);
         }
-    }
+    }   
     
 }
