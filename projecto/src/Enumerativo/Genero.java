@@ -8,8 +8,7 @@ public enum Genero {
     SUSPENSO,
     CIENCIA_FICCION,
     AVENTURA,
-    ANIMACION,
-    DOCUMENTAL;
+    ANIMACION;
 
     public static boolean genValido(String generoString) {
         if (generoString == null || generoString.trim().isEmpty()) {
