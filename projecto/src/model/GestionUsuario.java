@@ -75,6 +75,10 @@ public class GestionUsuario {
         return;
     }
 
+    public void registrarDatosPersonales(Usuario nuevoUsuario) throws Exception {
+        UDJ.registrar(nuevoUsuario);
+    }
+
     public boolean mailValido(String mail) {
 
         if (mail == null || mail.trim().isEmpty()) {
