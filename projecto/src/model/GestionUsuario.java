@@ -23,6 +23,10 @@ public class GestionUsuario {
         // TODO: Implement configurarPreferencias
     }
 
+    public void suscribirse() {
+        // TODO: Implement suscribirse
+    }
+
     private boolean dniUnico(int dni) {
         return UDJ.existeDNI(dni);
     }
@@ -71,7 +75,28 @@ public class GestionUsuario {
         return;
     }
 
-    public void suscribirse() {
-        // TODO: Implement suscribirse
+    public boolean mailValido(String mail) {
+        if (mail == null) {
+            return false; // El método de validación de arriba ya lo verifica, pero es buena práctica.
+        }
+
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        return mail.matches(emailRegex);
     }
+
+    public void ValidacionUsuario(String nombreUsuario, String contrasenia, String email) {
+
+        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+            throw new IllegalArgumentException("El Nombre de Usuario no puede estar vacío.");
+        }
+
+        if (contrasenia == null || contrasenia.isEmpty()) {
+            throw new IllegalArgumentException("La Contraseña no puede estar vacía.");
+        }
+
+        if (!mailValido(email)) {
+            throw new IllegalArgumentException("El formato del Email ingresado no es válido (Debe ser xxx@yyy).");
+        }
+    }
+
 }
