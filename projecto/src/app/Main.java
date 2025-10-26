@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-    public static void registrarDatosPersonales() {
+    public static void registrarUsuario() {
         
         // 1. SOLICITAR DATOS 
         Usuario DatosPersonales = new Usuario();
