@@ -44,15 +44,65 @@ public class GestionUsuario {
             return null;
         }
 
-        if (errores.length() > 0) {
-            System.out.println(" --- ERRORES DE VALIDACIÓN ENCONTRADOS ---");
-            System.out.println("El sistema informa los siguientes datos erróneos:");
-            System.out.println(errores.toString());
-            return null; // Devuelve null para indicar que el usuario no es válido
-        } else {
-            System.out.println("Validación de datos personales exitosa.");
-            return usuario; // Devuelve el objeto Usuario validado
+        if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
+
+        if (!stringValido(usuario.getNombre())) {
+            throw new IllegalArgumentException("El nombre no debe contener números ni caracteres especiales.");
+        }
+
+        if (usuario.getApellido() == null || usuario.getApellido().isEmpty()) { // Necesitas implementar getApellido()
+                                                                                // en Usuario
+            throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }
+
+        if (!stringValido(usuario.getApellido())) {
+            throw new IllegalArgumentException("El apellido no debe contener números ni caracteres especiales.");
+        }
+
+        return;
+    }
+
+    public boolean mailValido(String mail) {
+
+        if (mail == null || mail.trim().isEmpty()) {
+            return false;
+        }
+
+        int atIndex = mail.indexOf('@');
+
+        if (atIndex <= 0) {
+            return false;
+        }
+
+        if (mail.lastIndexOf('@') != atIndex) {
+            return false;
+        }
+
+        if (atIndex == mail.length() - 1) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public void ValidacionUsuario(String nombreUsuario, String contrasenia, String mail) {
+
+        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+            throw new IllegalArgumentException("El Nombre de Usuario no puede estar vacío.");
+        }
+
+        if (contrasenia == null || contrasenia.isEmpty()) {
+            throw new IllegalArgumentException("La Contraseña no puede estar vacía.");
+        }
+
+        if (!mailValido(mail)) {
+            throw new IllegalArgumentException("El formato del mail ingresado debe ser xxx@yyy.");
+        }
+
+        return;
     }
 
     public void suscribirse() {
