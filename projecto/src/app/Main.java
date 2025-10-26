@@ -75,6 +75,7 @@ public class Main {
             
             //3. SOLICITAR DATOS DEL USUARIO
              solicitarDatosUsuario(u);
+             gestionUsuario.ValidacionUsuario(u);
              u.setID_DATOS_PERSONALES(idSeleccionado);
 
             // 3. MOSTRAR Y CONFIRMAR al usuario
