@@ -12,7 +12,7 @@ public interface DatosPersonalesDAO {
      * Create: Agrega nuevos datos personales a la base de datos.
      * (Funcionalidad 1) [cite: 95]
      */
-    void registrar(Usuario datos);
+    void registrar(Usuario datos) throws SQLException;
 
     /**
      * Read (One): Lee de la base de datos y devuelve datos personales por su ID.
