@@ -109,17 +109,17 @@ public class GestionUsuario {
 
     }
 
-    public void ValidacionUsuario(String nombreUsuario, String contrasenia, String mail) {
+    public void ValidacionUsuario(Usuario usuario) {
 
-        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+        if (usuario.getNombre() == null || usuario.getNombre().trim().isEmpty()) {
             throw new IllegalArgumentException("El Nombre de Usuario no puede estar vacío.");
         }
 
-        if (contrasenia == null || contrasenia.isEmpty()) {
+        if (usuario.getContrasenia() == null || usuario.getContrasenia().isEmpty()) {
             throw new IllegalArgumentException("La Contraseña no puede estar vacía.");
         }
 
-        if (!mailValido(mail)) {
+        if (!mailValido(usuario.getCorreo())) {
             throw new IllegalArgumentException("El formato del mail ingresado debe ser xxx@yyy.");
         }
 
