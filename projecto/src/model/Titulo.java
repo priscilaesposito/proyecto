@@ -9,14 +9,16 @@ public class Titulo {
     private LinkedList<String> generos;
     private LinkedList<String> paisesDisponible;
     private metadatos Metadatos;
-    private Resenia LR; 
+    private Resenia LR;
 
     public Resenia getListasyResenias() {
         return LR;
     }
+
     public void setListasyResenias(Resenia lR) {
         LR = lR;
     }
+
     public void setCantVisualizaciones(int cantVisualizaciones) {
         this.cantVisualizaciones = cantVisualizaciones;
     }
@@ -76,6 +78,5 @@ public class Titulo {
     public void reproducirContenido() {
         // Lógica para reproducir el contenido
     }
+
 }
-
-

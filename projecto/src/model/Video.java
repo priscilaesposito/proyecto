@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Video {
 	private int ultimoMinutoVisto;
 	private String video;
-	private double duracion;
+	private int duracion;
 
 	public int getUltimoMinutoVisto() {
 		return ultimoMinutoVisto;
@@ -19,7 +19,7 @@ public class Video {
 		return video;
 	}
 	
-	public double getDuracion() {
+	public int getDuracion() {
 		return duracion;
 	}
 	
