@@ -131,18 +131,6 @@ public class Main {
         nuevoUsuario.setContrasenia(scanner.nextLine());
     }
 
-    private static void Valido(String linea) {
-    	LinkedList<Character> caracteresInvalidos = new LinkedList<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9','!','"','#','$','%','&','/','(',')','=','?','¡','¿','+','-','*','{','}','[',']','^','`','´','¨',';',':','.',','));
-    	for (char c : linea.toCharArray()) {
-    		if (caracteresInvalidos.contains(c)) {
-    			System.out.println("El nombre no debe contener números ni caracteres especiales. Ingrese nuevamente:");
-    			String nuevaLinea = scanner.nextLine();
-    			Valido(nuevaLinea);
-    			return;
-    		}
-    	}
-    	return;
-    }
 
     public static void main(String[] args) throws Exception {
         try {
@@ -150,9 +138,27 @@ public class Main {
             conexion.conectar(); 
             BaseDeDatos.inicializarBaseDeDatos();
             //menu para a elegir modulo
-            
-            registrarDatosPersonales();
-            registrarUsuario();
+            System.out.println("Seleccione una opción:");
+            System.out.println("1. Registrar Datos Personales");
+            System.out.println("2. Registrar Usuario");
+            int op = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea pendiente
+
+            switch (op) {
+                case 1:
+                    registrarDatosPersonales();
+                    break;
+                case 2:
+                    registrarUsuario();
+                    break;
+                case 3:
+                    registrarPelicula();
+                    ();
+                    break;
+                default:
+                    System.out.println("Opción no válida. Saliendo del programa.");
+                    break;
+            }
 
         } 
         catch (SQLException e) {
