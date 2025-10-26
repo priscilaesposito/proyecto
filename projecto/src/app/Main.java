@@ -105,7 +105,7 @@ public class Main {
         System.out.println("\n--- DATOS DE USUARIO ---");
         System.out.println("Username: " + u.getUsername());
         System.out.println("Correo: " + u.getCorreo());
-        System.out.println("Contraseña: [OCULTA]");
+        System.out.println("Contraseña: " + u.getContrasenia());
     }
 
     private static void solicitarDatosPersonales(Usuario nuevoUsuario){
