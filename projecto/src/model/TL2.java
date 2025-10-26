@@ -51,7 +51,7 @@ public class TL2 {
 		return UD.listarTodos();
 	}
 
-	public List<Usuario> listarUsuariosOrdenados(String criterio) {
+	public List<Usuario> listarUsuariosOrdenados(String criterio) throws SQLException {
 
 		List<Usuario> listaUsuarios = UD.listarTodos();
 

@@ -153,7 +153,6 @@ public class Main {
                     break;
                 case 3:
                     registrarPelicula();
-                    ();
                     break;
                 default:
                     System.out.println("Opción no válida. Saliendo del programa.");
