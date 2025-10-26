@@ -21,8 +21,9 @@ public interface DatosPersonalesDAO {
 
     /**
      * Read (All): Lee de la base de datos y devuelve todas las personas.
+     * @throws SQLException 
      */
-    List<Usuario> listarTodos();
+    List<Usuario> listarTodos() throws SQLException;
 
     /**
      * Update: Modifica datos personales existentes en la base de datos.
