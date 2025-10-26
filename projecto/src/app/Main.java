@@ -9,7 +9,7 @@ import java.util.Scanner;
 import DAO.DatosPersonalesDAO;
 import DAO.UsuarioDAO;
 import DAO.conexion;
-import DAOjdbc.DatosPersonalesDAOjdbc;
+import DAOjdbc.DatosPersonalesDAOJdbc;
 import model.GestionUsuario;
 import DAOjdbc.UsuarioDAOjdbc;
 import DB.BaseDeDatos;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class Main {
 
     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
-    private static DatosPersonalesDAO datosPersonalesDAO = new DatosPersonalesDAOjdbc();
+    private static DatosPersonalesDAO datosPersonalesDAO = new DatosPersonalesDAOJdbc();
     private static Scanner scanner = new Scanner(System.in);
     private static GestionUsuario gestionUsuario = new GestionUsuario();
 
