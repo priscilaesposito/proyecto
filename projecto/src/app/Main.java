@@ -24,7 +24,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static GestionUsuario gestionUsuario = new GestionUsuario();
 
-    public static void registrarDatosPersonales() {
+    public static void registrarDatosPersonales() throws Exception {
         
         // 1. SOLICITAR DATOS 
         Usuario DatosPersonales = new Usuario();
@@ -41,7 +41,7 @@ public class Main {
 
             if ("S".equals(confirmacion)) {
                 // 4. GUARDAR EN LA BASE DE DATOS
-                datosPersonalesDAO.registrar(DatosPersonales);
+                gestionUsuario.registrarDatosPersonales(DatosPersonales);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
                 System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");
@@ -140,7 +140,7 @@ public class Main {
     	return;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             // Inicializar la conexión (opcional, pero buena práctica)
             conexion.conectar(); 
