@@ -149,8 +149,11 @@ public class Main {
             // Inicializar la conexión (opcional, pero buena práctica)
             conexion.conectar(); 
             BaseDeDatos.inicializarBaseDeDatos();
+            //menu para a elegir modulo
+            
             registrarDatosPersonales();
             registrarUsuario();
+
         } 
         catch (SQLException e) {
             System.out.println("Error al iniciar la aplicación: La conexión a la BD falló.");
