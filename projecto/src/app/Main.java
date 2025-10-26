@@ -3,6 +3,7 @@ package app;
 import model.Usuario;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import DAO.DatosPersonalesDAO;
@@ -11,6 +12,7 @@ import DAO.conexion;
 import DAOjdbc.DatosPersonalesDAOJdbc;
 import model.GestionUsuario;
 import DAOjdbc.UsuarioDAOjdbc;
+import DB.BaseDeDatos;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -57,26 +59,33 @@ public class Main {
 
     public static void registrarUsuario() {
         
-        // 1. SOLICITAR DATOS 
-        Usuario DatosPersonales = new Usuario();
-        solicitarDatosUsuario(DatosPersonales);
+    
+        Usuario u = new Usuario();
+       
         try {
             // 1. Listado y eleccion de datos personales existentes
-            datosPersonalesDAO.listarTodos();
+            List<Usuario> DP= datosPersonalesDAO.listarTodos();
 
+            for (Usuario d : DP) {
+                System.out.println("ID: " + d.getID() + " - Nombre: " + d.getNombre() + " " + d.getApellido());
+            }
+            
             // 2. SELECCIONAR DATOS PERSONALES EXISTENTES
             System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
             int idSeleccionado = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea pendiente
+            
+            //3. SOLICITAR DATOS DEL USUARIO
+             solicitarDatosUsuario(u);
+             u.setID_DATOS_PERSONALES(idSeleccionado);
 
             // 3. MOSTRAR Y CONFIRMAR al usuario
-            mostrarDatosIngresados(DatosPersonales);
+            mostrarUsuarioIngresados(u);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
                 // 4. GUARDAR EN LA BASE DE DATOS
-                datosPersonalesDAO.registrar(DatosPersonales);
+                usuarioDAO.registrar(u);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
                 System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");
@@ -139,7 +148,9 @@ public class Main {
         try {
             // Inicializar la conexión (opcional, pero buena práctica)
             conexion.conectar(); 
+            BaseDeDatos.inicializarBaseDeDatos();
             registrarDatosPersonales();
+            registrarUsuario();
         } 
         catch (SQLException e) {
             System.out.println("Error al iniciar la aplicación: La conexión a la BD falló.");

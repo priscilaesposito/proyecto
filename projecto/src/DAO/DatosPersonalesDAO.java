@@ -21,7 +21,6 @@ public interface DatosPersonalesDAO {
 
     /**
      * Read (All): Lee de la base de datos y devuelve todas las personas.
-     * (Necesario para Funcionalidad 2) [cite: 107]
      */
     List<Usuario> listarTodos();
 
