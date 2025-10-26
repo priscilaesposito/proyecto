@@ -17,12 +17,6 @@ import DB.BaseDeDatos;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-/**
- * Clase principal que inicializa la aplicación y coordina el flujo de registro.
- * Esta clase contiene el método main y el control de la aplicación, llamando a:
- * 1. Usuario.solicitarDatos() (para la interacción y validación de formato).
- * 2. UsuarioDAO (para la validación de unicidad y persistencia).
- */
 public class Main {
 
     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
@@ -67,7 +61,7 @@ public class Main {
             List<Usuario> DP= datosPersonalesDAO.listarTodos();
 
             for (Usuario d : DP) {
-                System.out.println("ID: " + d.getID() + " - Nombre: " + d.getNombre() + " " + d.getApellido());
+                System.out.println("ID: " + d.getID_DATOS_PERSONALES() + " - Nombre: " + d.getNombre() + " " + d.getApellido());
             }
             
             // 2. SELECCIONAR DATOS PERSONALES EXISTENTES
