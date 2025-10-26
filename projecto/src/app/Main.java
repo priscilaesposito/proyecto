@@ -25,17 +25,16 @@ public class Main {
 
     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
     private static Scanner scanner = new Scanner(System.in);
-    
+
     public static void registrarUsuario() {
-        
-        // 1. SOLICITAR DATOS 
+
+        // 1. SOLICITAR DATOS
         Usuario nuevoUsuario = new Usuario();
         solicitarDatosUsuario(nuevoUsuario);
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
             GestionUsuario.validacionDatos(nuevoUsuario);
-                      
-            
+
             // 3. MOSTRAR Y CONFIRMAR al usuario
             mostrarDatosIngresados(nuevoUsuario);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
@@ -49,12 +48,10 @@ public class Main {
                 System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");
             }
 
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
-    
 
     private static void mostrarDatosIngresados(Usuario u) {
         System.out.println("\n--- DATOS INGRESADOS ---");
@@ -66,7 +63,8 @@ public class Main {
         System.out.println("Idioma: " + u.getIdioma());
         System.out.println("Fecha Nacimiento: " + u.getFechaNacimiento());
     }
-    private static void solicitarDatosUsuario(Usuario nuevoUsuario){
+
+    private static void solicitarDatosUsuario(Usuario nuevoUsuario) {
         System.out.println("Ingrese DNI:");
         nuevoUsuario.setDNI(scanner.nextInt());
         scanner.nextLine(); // Consumir el salto de línea pendiente
@@ -80,38 +78,25 @@ public class Main {
         nuevoUsuario.setCorreo(scanner.nextLine());
         System.out.println("Ingrese Contrasenia:");
         nuevoUsuario.setContrasenia(scanner.nextLine());
-         System.out.println("Ingrese Dia de Nacimiento:");
-         Fecha f= new Fecha();
+        System.out.println("Ingrese Dia de Nacimiento:");
+        Fecha f = new Fecha();
         f.setDia(scanner.nextInt());
         System.out.println("Ingrese Mes de Nacimiento:");
         f.setMes(scanner.nextInt());
         System.out.println("Ingrese Año de Nacimiento:");
         f.setAnio(scanner.nextInt());
-         nuevoUsuario.setFechaNacimiento(f);
+        nuevoUsuario.setFechaNacimiento(f);
 
-    }
-    private static void Valido(String linea) {
-    	LinkedList<Character> caracteresInvalidos = new LinkedList<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9','!','"','#','$','%','&','/','(',')','=','?','¡','¿','+','-','*','{','}','[',']','^','`','´','¨',';',':','.',','));
-    	for (char c : linea.toCharArray()) {
-    		if (caracteresInvalidos.contains(c)) {
-    			System.out.println("El nombre no debe contener números ni caracteres especiales. Ingrese nuevamente:");
-    			String nuevaLinea = scanner.nextLine();
-    			Valido(nuevaLinea);
-    			return;
-    		}
-    	}
-    	return;
     }
 
     public static void main(String[] args) {
         try {
             // Inicializar la conexión (opcional, pero buena práctica)
-            conexion.conectar(); 
+            conexion.conectar();
             registrarUsuario();
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error al iniciar la aplicación: La conexión a la BD falló.");
-        } 
+        }
 
         finally {
             conexion.desconectar(); // Cierra la conexión al finalizar
