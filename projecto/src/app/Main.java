@@ -26,14 +26,14 @@ public class Main {
     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void registrarUsuario() {
+    public static void registrarDatosPersonales() {
 
         // 1. SOLICITAR DATOS
         Usuario nuevoUsuario = new Usuario();
         solicitarDatosUsuario(nuevoUsuario);
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
-            GestionUsuario.validacionDatos(nuevoUsuario);
+            GestionUsuario.validacionDatosPersonales(nuevoUsuario);
 
             // 3. MOSTRAR Y CONFIRMAR al usuario
             mostrarDatosIngresados(nuevoUsuario);

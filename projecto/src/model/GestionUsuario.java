@@ -27,19 +27,16 @@ public class GestionUsuario {
         return UDJ.existeDNI(dni);
     }
 
-    private static void Valido(String linea) {
+    private boolean stringValido(String linea) {
         LinkedList<Character> caracteresInvalidos = new LinkedList<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6',
                 '7', '8', '9', '!', '"', '#', '$', '%', '&', '/', '(', ')', '=', '?', '¡', '¿', '+', '-', '*', '{', '}',
                 '[', ']', '^', '`', '´', '¨', ';', ':', '.', ','));
         for (char c : linea.toCharArray()) {
             if (caracteresInvalidos.contains(c)) {
-                System.out.println("El nombre no debe contener números ni caracteres especiales. Ingrese nuevamente:");
-                String nuevaLinea = scanner.nextLine();
-                Valido(nuevaLinea);
-                return;
+                return false;
             }
         }
-        return;
+        return true;
     }
 
     /**
@@ -54,6 +51,24 @@ public class GestionUsuario {
             throw new IllegalArgumentException("El DNI ya existe en la base de datos.");
         }
 
+        if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+
+        if (!stringValido(usuario.getNombre())) {
+            throw new IllegalArgumentException("El nombre no debe contener números ni caracteres especiales.");
+        }
+
+        if (usuario.getApellido() == null || usuario.getApellido().isEmpty()) { // Necesitas implementar getApellido()
+                                                                                // en Usuario
+            throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }
+
+        if (!stringValido(usuario.getApellido())) {
+            throw new IllegalArgumentException("El apellido no debe contener números ni caracteres especiales.");
+        }
+
+        return;
     }
 
     public void suscribirse() {
