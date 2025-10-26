@@ -76,15 +76,30 @@ public class GestionUsuario {
     }
 
     public boolean mailValido(String mail) {
-        if (mail == null) {
-            return false; // El método de validación de arriba ya lo verifica, pero es buena práctica.
+
+        if (mail == null || mail.trim().isEmpty()) {
+            return false;
         }
 
-        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
-        return mail.matches(emailRegex);
+        int atIndex = mail.indexOf('@');
+
+        if (atIndex <= 0) {
+            return false;
+        }
+
+        if (mail.lastIndexOf('@') != atIndex) {
+            return false;
+        }
+
+        if (atIndex == mail.length() - 1) {
+            return false;
+        }
+
+        return true;
+
     }
 
-    public void ValidacionUsuario(String nombreUsuario, String contrasenia, String email) {
+    public void ValidacionUsuario(String nombreUsuario, String contrasenia, String mail) {
 
         if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
             throw new IllegalArgumentException("El Nombre de Usuario no puede estar vacío.");
@@ -94,9 +109,11 @@ public class GestionUsuario {
             throw new IllegalArgumentException("La Contraseña no puede estar vacía.");
         }
 
-        if (!mailValido(email)) {
-            throw new IllegalArgumentException("El formato del Email ingresado no es válido (Debe ser xxx@yyy).");
+        if (!mailValido(mail)) {
+            throw new IllegalArgumentException("El formato del mail ingresado debe ser xxx@yyy.");
         }
+
+        return;
     }
 
 }
