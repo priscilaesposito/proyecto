@@ -1,6 +1,5 @@
 package app;
 
-import model.Fecha;
 import model.Usuario;
 
 import java.util.LinkedList;
@@ -60,10 +59,15 @@ public class Main {
         
         // 1. SOLICITAR DATOS 
         Usuario DatosPersonales = new Usuario();
-        solicitarDatosPersonales(DatosPersonales);
+        solicitarDatosUsuario(DatosPersonales);
         try {
-            // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
-            GestionUsuario.validacionDatos(DatosPersonales);
+            // 1. Listado y eleccion de datos personales existentes
+            datosPersonalesDAO.listarTodos();
+
+            // 2. SELECCIONAR DATOS PERSONALES EXISTENTES
+            System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
+            int idSeleccionado = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea pendiente
 
             // 3. MOSTRAR Y CONFIRMAR al usuario
             mostrarDatosIngresados(DatosPersonales);

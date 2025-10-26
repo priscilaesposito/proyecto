@@ -2,6 +2,8 @@ package model;
 
 import model.Usuario;
 
+import java.sql.SQLException;
+
 import DAO.DatosPersonalesDAO;
 import DAOjdbc.DatosPersonalesDAOJdbc;
 
@@ -20,7 +22,7 @@ public class GestionUsuario {
         // TODO: Implement configurarPreferencias
     }
 
-    private boolean dniUnico(int dni) {
+    private boolean dniUnico(int dni) throws SQLException {
         return UDJ.existeDNI(dni);
     }
 
