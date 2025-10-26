@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import DAOjdbc.DatosPersonalesDAOJdbc;
 
 import DAO.UsuarioDAO;
 import DAOjdbc.UsuarioDAOjdbc;
+
+import Utilidades.OrdenarPorNombreUsuario;
+import Utilidades.OrdenarPorMail;
 
 public class TL2 {
 	private UsuarioDAO UD = new DAOjdbc.UsuarioDAOjdbc();
@@ -47,4 +51,20 @@ public class TL2 {
 		return UD.listarTodos();
 	}
 
+	public List<Usuario> listarUsuariosOrdenados(String criterio) {
+
+		List<Usuario> listaUsuarios = UD.listarTodos();
+
+		if ("NOMBRE".equalsIgnoreCase(criterio)) {
+			Collections.sort(listaUsuarios, new OrdenarPorNombreUsuario());
+
+		} else if ("EMAIL".equalsIgnoreCase(criterio)) {
+			Collections.sort(listaUsuarios, new OrdenarPorMail());
+
+		} else {
+			System.out.println("Criterio de ordenación no válido. Se muestra sin ordenar.");
+		}
+
+		return listaUsuarios;
+	}
 }
