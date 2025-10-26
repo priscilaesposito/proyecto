@@ -5,11 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import DAO.DatosPersonalesDAO;
-import DAOjdbc.DatosPersonalesDAOJdbc;
+import DAOjdbc.DatosPersonalesDAOjdbc;
 
 
 public class TL2 {
-	private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
+	private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOjdbc();
     private LinkedList<Usuario> listaUsuarios;
 
 	public String iniciarSesion(String username, String password) {

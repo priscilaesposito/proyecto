@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import DAO.DatosPersonalesDAO;
-import DAOjdbc.DatosPersonalesDAOJdbc;
+import DAOjdbc.DatosPersonalesDAOjdbc;
 
 public class GestionUsuario {
-    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
+    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOjdbc();
 
     public void configurarIdioma() {
         // TODO: Implement configurarIdioma
