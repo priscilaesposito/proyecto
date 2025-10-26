@@ -11,6 +11,7 @@ import DAO.UsuarioDAO;
 import DAO.conexion;
 import DAOjdbc.DatosPersonalesDAOJdbc;
 import model.GestionUsuario;
+import model.TL2;
 import DAOjdbc.UsuarioDAOjdbc;
 import DB.BaseDeDatos;
 
@@ -23,6 +24,7 @@ public class Main {
     private static DatosPersonalesDAO datosPersonalesDAO = new DatosPersonalesDAOJdbc();
     private static Scanner scanner = new Scanner(System.in);
     private static GestionUsuario gestionUsuario = new GestionUsuario();
+    private static TL2 TL2 = new TL2();
 
     public static void registrarDatosPersonales() throws Exception {
         
@@ -53,19 +55,19 @@ public class Main {
         }
     }
 
-    public static void registrarUsuario() {
+    public static void registrarUsuario() throws Exception {
         
     
         Usuario u = new Usuario();
        
         try {
             // 1. Listado y eleccion de datos personales existentes
-            List<Usuario> DP= datosPersonalesDAO.listarTodos();
+            List<Usuario> DP= TL2.getListaPersonas();
 
             for (Usuario d : DP) {
                 System.out.println("ID: " + d.getID_DATOS_PERSONALES() + " - Nombre: " + d.getNombre() + " " + d.getApellido() + " - DNI: " + d.getDNI());
             }
-            
+           
             // 2. SELECCIONAR DATOS PERSONALES EXISTENTES
             System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
             int idSeleccionado = scanner.nextInt();
@@ -82,7 +84,7 @@ public class Main {
 
             if ("S".equals(confirmacion)) {
                 // 4. GUARDAR EN LA BASE DE DATOS
-                usuarioDAO.registrar(u);
+                gestionUsuario.registrarUsuario(u);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
                 System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");
