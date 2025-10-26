@@ -15,7 +15,7 @@ public class GestionUsuario {
     }
 
     public void configurarNombre() {
-        // TODO: Implement configurarNombre
+        // TODO: Implement configurarNombr
     }
 
     public void configurarPreferencias() {
@@ -62,6 +62,10 @@ public class GestionUsuario {
         }
 
         return;
+    }
+
+    public void registrarDatosPersonales(Usuario nuevoUsuario) throws Exception {
+        UDJ.registrar(nuevoUsuario);
     }
 
     public boolean mailValido(String mail) {
