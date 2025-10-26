@@ -63,12 +63,13 @@ public class Main {
             List<Usuario> DP= datosPersonalesDAO.listarTodos();
 
             for (Usuario d : DP) {
-                System.out.println("ID: " + d.getID_DATOS_PERSONALES() + " - Nombre: " + d.getNombre() + " " + d.getApellido());
+                System.out.println("ID: " + d.getID_DATOS_PERSONALES() + " - Nombre: " + d.getNombre() + " " + d.getApellido() + " - DNI: " + d.getDNI());
             }
             
             // 2. SELECCIONAR DATOS PERSONALES EXISTENTES
             System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
             int idSeleccionado = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea pendiente
             
             //3. SOLICITAR DATOS DEL USUARIO
              solicitarDatosUsuario(u);
