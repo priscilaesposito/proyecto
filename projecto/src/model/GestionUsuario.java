@@ -16,7 +16,7 @@ public class GestionUsuario {
     }
 
     public void configurarNombre() {
-        // TODO: Implement configurarNombre
+        // TODO: Implement configurarNombr
     }
 
     public void configurarPreferencias() {

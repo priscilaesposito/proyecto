@@ -2,7 +2,12 @@ package model;
 
 import java.util.LinkedList;
 
+import DAO.DatosPersonalesDAO;
+import DAOjdbc.DatosPersonalesDAOJdbc;
+
+
 public class TL2 {
+	private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
     private LinkedList<Usuario> listaUsuarios;
 
 	public String iniciarSesion(String username, String password) {
@@ -28,4 +33,10 @@ public class TL2 {
 		// Implementation needed
         return listaUsuarios;
 	}
+
+	public LinkedList<Usuario> getListaPersonas() {
+		
+        return listaUsuarios;
+	}
+
 }
