@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import DAO.DatosPersonalesDAO;
-import DAOjdbc.DatosPersonalesDAOjdbc;
+import DAOjdbc.DatosPersonalesDAOJdbc;
 
 import DAO.UsuarioDAO;
 import DAOjdbc.UsuarioDAOjdbc;
