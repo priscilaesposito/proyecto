@@ -9,8 +9,12 @@ import java.util.LinkedList;
 import DAO.DatosPersonalesDAO;
 import DAOjdbc.DatosPersonalesDAOjdbc;
 
+import DAO.UsuarioDAO;
+import DAOjdbc.UsuarioDAOjdbc;
+
 public class GestionUsuario {
-    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOjdbc();
+    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
+    private UsuarioDAO UD = new DAOjdbc.UsuarioDAOjdbc();
 
     public void configurarIdioma() {
         // TODO: Implement configurarIdioma
@@ -51,7 +55,7 @@ public class GestionUsuario {
      * @return El mismo objeto Usuario si es válido, o null si hay errores.
      * @throws SQLException 
      */
-    public void validacionDatosPersonales(Usuario usuario) throws SQLException {
+    private void validacionDatosPersonales(Usuario usuario) throws SQLException {
         // Validar unicidad de DNI
         if (!dniUnico(usuario.getDNI())) {
             throw new IllegalArgumentException("El DNI ya existe en la base de datos.");
@@ -81,7 +85,7 @@ public class GestionUsuario {
         UDJ.registrar(nuevoUsuario);
     }
 
-    public boolean mailValido(String mail) {
+    private boolean mailValido(String mail) {
 
         if (mail == null || mail.trim().isEmpty()) {
             return false;
@@ -120,6 +124,10 @@ public class GestionUsuario {
         }
 
         return;
+    }
+
+    public void registrarUsuario(Usuario nuevoUsuario) throws Exception {
+        UD.registrar(nuevoUsuario);
     }
 
 }
