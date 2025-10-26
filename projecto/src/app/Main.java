@@ -30,7 +30,7 @@ public class Main {
         solicitarDatosPersonales(DatosPersonales);
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
-            GestionUsuario.validacionDatos(DatosPersonales);
+            GestionUsuario.validacionDatosPersonales(DatosPersonales);
 
             // 3. MOSTRAR Y CONFIRMAR al usuario
             mostrarDatosIngresados(DatosPersonales);

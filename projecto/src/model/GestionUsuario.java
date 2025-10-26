@@ -3,6 +3,8 @@ package model;
 import model.Usuario;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 import DAO.DatosPersonalesDAO;
 import DAOjdbc.DatosPersonalesDAOJdbc;
@@ -22,8 +24,24 @@ public class GestionUsuario {
         // TODO: Implement configurarPreferencias
     }
 
+    public void suscribirse() {
+        // TODO: Implement suscribirse
+    }
+
     private boolean dniUnico(int dni) throws SQLException {
         return UDJ.existeDNI(dni);
+    }
+
+    private boolean stringValido(String linea) {
+        LinkedList<Character> caracteresInvalidos = new LinkedList<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6',
+                '7', '8', '9', '!', '"', '#', '$', '%', '&', '/', '(', ')', '=', '?', '¡', '¿', '+', '-', '*', '{', '}',
+                '[', ']', '^', '`', '´', '¨', ';', ':', '.', ','));
+        for (char c : linea.toCharArray()) {
+            if (caracteresInvalidos.contains(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -31,17 +49,12 @@ public class GestionUsuario {
      * 
      * @param usuario El objeto Usuario con los datos a validar de datos personales.
      * @return El mismo objeto Usuario si es válido, o null si hay errores.
+     * @throws SQLException 
      */
-    public static Usuario validacionDatos(Usuario usuario) {
-
-        // Objeto para recolectar todos los errores encontrados
-        StringBuilder errores = new StringBuilder();
-
-        // 1. VERIFICAR NULIDAD DEL OBJETO
-        if (usuario == null) {
-            errores.append("Error fatal: El objeto Usuario es nulo.\n");
-            System.out.println(errores.toString());
-            return null;
+    private void validacionDatosPersonales(Usuario usuario) throws SQLException {
+        // Validar unicidad de DNI
+        if (!dniUnico(usuario.getDNI())) {
+            throw new IllegalArgumentException("El DNI ya existe en la base de datos.");
         }
 
         if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
@@ -109,7 +122,4 @@ public class GestionUsuario {
         return;
     }
 
-    public void suscribirse() {
-        // TODO: Implement suscribirse
-    }
 }

@@ -1,6 +1,8 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 
 import DAO.DatosPersonalesDAO;
 import DAOjdbc.DatosPersonalesDAOJdbc;
@@ -34,9 +36,8 @@ public class TL2 {
         return listaUsuarios;
 	}
 
-	public LinkedList<Usuario> getListaPersonas() {
-		
-        return listaUsuarios;
+	public List<Usuario> getListaPersonas() throws SQLException {
+		return UDJ.listarTodos();
 	}
 
 }
