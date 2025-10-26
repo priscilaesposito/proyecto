@@ -41,6 +41,7 @@ public interface DatosPersonalesDAO {
      * Verifica si existe un DNI en la base de datos.
      * @param dni El DNI a verificar
      * @return true si el DNI ya existe, false si no existe
+     * @throws SQLException 
      */
-    boolean existeDNI(int dni);
+    boolean existeDNI(int dni) throws SQLException;
 }

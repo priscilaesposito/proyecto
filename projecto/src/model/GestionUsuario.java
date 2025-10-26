@@ -30,7 +30,7 @@ public class GestionUsuario {
      * @param usuario El objeto Usuario con los datos a validar de datos personales.
      * @return El mismo objeto Usuario si es válido, o null si hay errores.
      */
-    public Usuario validacionDatos(Usuario usuario) {
+    public static Usuario validacionDatos(Usuario usuario) {
 
         // Objeto para recolectar todos los errores encontrados
         StringBuilder errores = new StringBuilder();

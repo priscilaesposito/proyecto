@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import DAO.UsuarioDAO;
 import DAO.conexion;
+import DAOjdbc.DatosPersonalesDAOJdbc;
+import model.GestionUsuario;
 import DAOjdbc.UsuarioDAOjdbc;
 
 import java.sql.SQLException;
@@ -31,10 +33,8 @@ public class Main {
         solicitarDatosUsuario(nuevoUsuario);
         try {
             // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
-            if (usuarioDAO.existeDNI(nuevoUsuario.getDNI())) {
-                System.out.println("\n[ERROR FATAL] El DNI " + nuevoUsuario.getDNI() + " ya está registrado. No se puede guardar.");
-                return;
-            }
+            GestionUsuario.validacionDatos(nuevoUsuario);
+                      
             
             // 3. MOSTRAR Y CONFIRMAR al usuario
             mostrarDatosIngresados(nuevoUsuario);
@@ -71,13 +71,9 @@ public class Main {
         nuevoUsuario.setDNI(scanner.nextInt());
         scanner.nextLine(); // Consumir el salto de línea pendiente
         System.out.println("Ingrese Nombre:");
-        String linea=scanner.nextLine();
-        Valido(linea);
-        nuevoUsuario.setNombre(linea);
+        nuevoUsuario.setNombre(scanner.nextLine());
         System.out.println("Ingrese Apellido:");
-        linea = scanner.nextLine();
-        Valido(linea);
-        nuevoUsuario.setApellido(linea);
+        nuevoUsuario.setApellido(scanner.nextLine());
         System.out.println("Ingrese username:");
         nuevoUsuario.setUsername(scanner.nextLine());
         System.out.println("Ingrese Correo:");
