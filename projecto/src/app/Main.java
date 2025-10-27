@@ -167,12 +167,16 @@ private static void registrarResenia() throws Exception {
     gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
      
     Usuario u = gestionUsuario.buscar(nombreUsuario);
+    if (u == null) {
+        System.out.println("Error: Usuario no encontrado. Verifique sus credenciales.");
+        return;
+    }
     r.setID_Usuario(u.getID_USUARIO());
     
     //LISTAR PELICULAS
     String criterio = "TITULO";
     List<model.Pelicula> peliculas = TL2.listarPeliculasOrdenadas(criterio);
-    System.out.println("\n--- LISTA DE PELÍCULAS REGISTRADAS ---");
+    System.out.println("\n--- LISTA DE PELICULAS REGISTRADAS ---");
     for (model.Pelicula p : peliculas) {
         System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
                 ", Género(s): " + String.join(", ", p.getGeneros()) + ", Duración: " + p.getVideo().getDuracion() + " minutos");
@@ -194,10 +198,10 @@ private static void registrarResenia() throws Exception {
     String comentario = scanner.nextLine();
     r.setComentario(comentario);
 
-    // Obtener fecha y hora actual en formato string
+    // Obtener fecha y hora actual 
     LocalDateTime fechaHoraActual = java.time.LocalDateTime.now();
     r.setFechaHora(fechaHoraActual.toString());
-    
+
 
     //CONFIRMAR Y GUARDAR
     System.out.println("\n¿Son estos datos correctos? (S/N): ");
@@ -274,7 +278,19 @@ private static void registrarResenia() throws Exception {
         System.out.println("Ingrese Contrasenia:");
         nuevoUsuario.setContrasenia(scanner.nextLine());
     }
+    
+    private static void menu(){
+        System.out.println("Seleccione una opción:");
+            System.out.println("1. Registrar Datos Personales");
+            System.out.println("2. Registrar Usuario");
+            System.out.println("3. Registrar Película");
+            System.out.println("4. Listar Usuarios");
+            System.out.println("5. Listar Películas");
+            System.out.println("6. Registrar Reseña");
+            System.out.println("7. Aprobar Reseña");
+            System.out.println("8. Salir");
 
+    }
 
 
     public static void main(String[] args) throws Exception {
@@ -284,15 +300,7 @@ private static void registrarResenia() throws Exception {
             BaseDeDatos.inicializarBaseDeDatos();
 
             //menu para a elegir modulo
-            System.out.println("Seleccione una opción:");
-            System.out.println("1. Registrar Datos Personales");
-            System.out.println("2. Registrar Usuario");
-            System.out.println("3. Registrar Película");
-            System.out.println("4. Listar Usuarios");
-            System.out.println("5. Listar Películas");
-            System.out.println("6. Registrar Reseña");
-            System.out.println("7. Aprobar Reseña");
-            System.out.println("8. Salir");
+            menu();
             int op = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea pendiente
             while (op!=8){
@@ -324,6 +332,10 @@ private static void registrarResenia() throws Exception {
                     System.out.println("Opción no válida.");
                     break;
             }
+            menu();
+            op = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea pendiente
+
         }
 
         } 
