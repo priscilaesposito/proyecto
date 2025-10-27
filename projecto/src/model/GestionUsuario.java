@@ -112,11 +112,11 @@ public class GestionUsuario {
     public void ValidacionUsuario(Usuario usuario) {
 
         if (usuario.getNombre() == null || usuario.getNombre().trim().isEmpty()) {
-            throw new IllegalArgumentException("El Nombre de Usuario no puede estar vacío.");
+            throw new IllegalArgumentException("El nombre de usuario no puede estar vacio.");
         }
 
         if (usuario.getContrasenia() == null || usuario.getContrasenia().isEmpty()) {
-            throw new IllegalArgumentException("La Contraseña no puede estar vacía.");
+            throw new IllegalArgumentException("La contrasenia no puede estar vacia.");
         }
 
         if (!mailValido(usuario.getCorreo())) {
@@ -128,6 +128,10 @@ public class GestionUsuario {
 
     public void registrarUsuario(Usuario nuevoUsuario) throws Exception {
         UD.registrar(nuevoUsuario);
+    }
+
+    public boolean validacionUsuarioContrasenia(String usuario, String contrasenia) throws SQLException {
+        return UD.validar(usuario, contrasenia);
     }
 
 }

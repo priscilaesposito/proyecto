@@ -77,25 +77,21 @@ public class TL2 {
 		return listaUsuarios;
 	}
 
-	public class GestionPeliculas {
+	public List<Pelicula> listarPeliculasOrdenadas(String criterio) {
 
-		// Asumimos que existe un PeliculaDAO peliculaDAO;
+		List<Pelicula> listaPeliculas = PD.listarTodos();
 
-		public List<Pelicula> listarPeliculasOrdenadas(String criterio) {
-
-			List<Pelicula> listaPeliculas = PD.listarTodos();
-
-			if ("TITULO".equalsIgnoreCase(criterio)) {
-				Collections.sort(listaPeliculas, new OrdenarPorTitulo());
-			} else if ("DURACION".equalsIgnoreCase(criterio)) {
-				Collections.sort(listaPeliculas, new OrdenarPorDuracion());
-			} else if ("GENERO".equalsIgnoreCase(criterio)) {
-				Collections.sort(listaPeliculas, new OrdenarPorPrimerGenero());
-			} else {
-				System.out.println("Criterio de ordenación no válido. Se muestra sin ordenar.");
-			}
-
-			return listaPeliculas;
+		if ("TITULO".equalsIgnoreCase(criterio)) {
+			Collections.sort(listaPeliculas, new OrdenarPorTitulo());
+		} else if ("DURACION".equalsIgnoreCase(criterio)) {
+			Collections.sort(listaPeliculas, new OrdenarPorDuracion());
+		} else if ("GENERO".equalsIgnoreCase(criterio)) {
+			Collections.sort(listaPeliculas, new OrdenarPorPrimerGenero());
+		} else {
+			System.out.println("Criterio de ordenación no válido. Se muestra sin ordenar.");
 		}
+
+		return listaPeliculas;
 	}
+
 }

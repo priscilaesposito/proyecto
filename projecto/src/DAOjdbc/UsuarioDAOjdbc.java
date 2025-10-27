@@ -95,7 +95,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
 
     @Override
     public Usuario validar(String nombreUsuario, String contrasenia) {
-        // 
         String sql = SELECT_USUARIO_CON_DATOS + "WHERE U.NOMBRE_USUARIO = ? AND U.CONTRASENIA = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -111,7 +110,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         } catch (SQLException e) {
             System.out.println("Error al validar usuario: " + e.getMessage());
         }
-        return null; // Credenciales incorrectas
+        return null;
     }
 
     /**
