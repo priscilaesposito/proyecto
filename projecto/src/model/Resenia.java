@@ -12,7 +12,8 @@ public class Resenia {
     public Resenia() {
     }
 
-    public Resenia(int calificacion, String comentario, int aprobado, String fechaHora, int ID_Usuario, int ID_Pelicula, int ID_Resenia) {
+    public Resenia(int calificacion, String comentario, int aprobado, String fechaHora, int ID_Usuario, int ID_Pelicula,
+            int ID_Resenia) {
         this.calificacion = calificacion;
         this.comentario = comentario;
         this.aprobado = aprobado;
@@ -81,6 +82,5 @@ public class Resenia {
     public void setID_Resenia(int ID_Resenia) {
         this.ID_Resenia = ID_Resenia;
     }
-
 
 }

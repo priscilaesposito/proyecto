@@ -3,6 +3,9 @@ package model;
 import java.util.LinkedList;
 import model.Resenia;
 
+import DAO.UsuarioDAO;
+import DAOjdbc.UsuarioDAOjdbc;
+
 public class ListasyResenias {
     private LinkedList<Resenia> resenias;
     private double puntuacion;

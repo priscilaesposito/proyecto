@@ -131,7 +131,11 @@ public class GestionUsuario {
     }
 
     public boolean validacionUsuarioContrasenia(String usuario, String contrasenia) throws SQLException {
-        return UD.validar(usuario, contrasenia);
+        if (UD.validar(usuario, contrasenia) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
