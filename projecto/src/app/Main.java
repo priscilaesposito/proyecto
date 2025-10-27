@@ -19,6 +19,7 @@ import model.Resenia;
 import model.TL2;
 
 import DB.BaseDeDatos;
+import java.time.LocalDateTime;
 import model.ListasyResenias;
 
 public class Main {
@@ -206,6 +207,10 @@ private static void registrarResenia() throws Exception {
     String comentario = scanner.nextLine();
     r.setComentario(comentario);
 
+    // Obtener fecha y hora actual en formato string
+    LocalDateTime fechaHoraActual = java.time.LocalDateTime.now();
+    r.setFechaHora(fechaHoraActual.toString());
+    
 
     //CONFIRMAR Y GUARDAR
     System.out.println("\n¿Son estos datos correctos? (S/N): ");
@@ -295,9 +300,15 @@ private static void registrarResenia() throws Exception {
             System.out.println("Seleccione una opción:");
             System.out.println("1. Registrar Datos Personales");
             System.out.println("2. Registrar Usuario");
+            System.out.println("3. Registrar Película");
+            System.out.println("4. Listar Usuarios");
+            System.out.println("5. Listar Películas");
+            System.out.println("6. Registrar Reseña");
+            System.out.println("7. Aprobar Reseña");
+            System.out.println("8. Salir");
             int op = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea pendiente
-
+            while (op!=8){
             switch (op) {
                 case 1:
                     registrarDatosPersonales();
@@ -320,10 +331,13 @@ private static void registrarResenia() throws Exception {
                 case 7:
                     aprobarResenia();
                      break;
-                default:
-                    System.out.println("Opción no válida. Saliendo del programa.");
+                case 8:
+                    break;   
+                 default:
+                    System.out.println("Opción no válida.");
                     break;
             }
+        }
 
         } 
         catch (SQLException e) {
