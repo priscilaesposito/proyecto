@@ -19,24 +19,14 @@ public interface ReseniaDAO {
     Resenia buscarPorId(int id);
 
     /**
-     * Read (All): Lee de la base de datos y devuelve todas las reseñas.
-     */
-    List<Resenia> listarTodos();
-
-    /**
-     * Update: Modifica una reseña existente en la base de datos.
-     */
-    void actualizar(Resenia resenia);
-
-    /**
      * Read (Specific): Devuelve un listado de reseñas NO aprobadas.
-     * (Funcionalidad 7) 
+     * (Funcionalidad 7)
      */
     List<Resenia> listarNoAprobadas();
 
     /**
      * Update (Specific): Aprueba una reseña específica por su ID.
-     * (Funcionalidad 7) 
+     * (Funcionalidad 7)
      */
     void aprobarResenia(int idResenia);
 }

@@ -1,19 +1,20 @@
 package model;
 
 import java.util.LinkedList;
-import model.Resenia;
+import java.util.List;
 
-import DAO.UsuarioDAO;
-import DAOjdbc.UsuarioDAOjdbc;
+import DAO.ReseniaDAO;
+import DAOjdbc.ReseniaDAOjdbc;
 
 public class ListasyResenias {
+    private ReseniaDAO RD = new DAOjdbc.ReseniaDAOjdbc();
     private LinkedList<Resenia> resenias;
     private double puntuacion;
     private int cantPuntuacion;
     private int sumaPuntuacion;
 
     private boolean moderacion(Resenia resenia) {
-        return true;
+        return true; // puesto de esta forma para no tener errores de compilacion.
     }
 
     public LinkedList<Resenia> getResenias() {
@@ -31,6 +32,24 @@ public class ListasyResenias {
     }
 
     public void aniadirResenias(Resenia resenia) {
-        this.resenias.add(resenia);
+        RD.registrar(resenia);
     }
+
+    public List<Resenia> listarReseniasNoAprobadas() {
+        return RD.listarNoAprobadas();
+    }
+
+    public Resenia validarResenia(int IDresenia) {
+        Resenia reseñaEncontrada = RD.buscarPorId(IDresenia);
+        if (reseñaEncontrada == null) {
+            System.out.println(" Error: La reseña con ID " + IDresenia + " no existe.");
+            return null;
+        }
+        return reseñaEncontrada;
+    }
+
+    public void aprobarResenia(int idResenia) {
+        RD.aprobarResenia(idResenia);
+    }
+
 }
