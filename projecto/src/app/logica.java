@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import DAO.DatosPersonalesDAO;
 import DAO.UsuarioDAO;
-import DAO.conexion;
 
 import DAOjdbc.DatosPersonalesDAOJdbc;
 import DAOjdbc.UsuarioDAOjdbc;
@@ -17,7 +16,6 @@ import model.GestionUsuario;
 import model.Resenia;
 import model.TL2;
 
-import DB.BaseDeDatos;
 import java.time.LocalDateTime;
 import model.ListasyResenias;
 
