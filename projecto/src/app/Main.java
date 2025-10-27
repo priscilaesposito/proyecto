@@ -128,7 +128,10 @@ public class Main {
 
     private static void listarUsuarios() throws Exception {
         try {
-            List<Usuario> usuarios = TL2.getListaUsuarios();
+            System.out.println("Seleccione el criterio de ordenamiento:");
+            System.out.println("NOMBRE O EMAIL");
+            String criterio = scanner.nextLine();
+            List<Usuario> usuarios = TL2.listarUsuariosOrdenados(criterio);
             System.out.println("\n--- LISTA DE USUARIOS REGISTRADOS ---");
             for (Usuario u : usuarios) {
                 System.out.println("ID: " + u.getID_USUARIO() + ", Username: " + u.getUsername() + ", Correo: " + u.getCorreo() +
@@ -225,6 +228,9 @@ public class Main {
                 case 4:
                     listarUsuarios();
                     break;
+                case 5:
+                   //listarPeliculas();
+                     break;
                 default:
                     System.out.println("Opción no válida. Saliendo del programa.");
                     break;
