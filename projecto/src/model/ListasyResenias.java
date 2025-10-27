@@ -39,7 +39,8 @@ public class ListasyResenias {
         return RD.listarNoAprobadas();
     }
 
-    public Resenia validarResenia(int IDresenia) {
+    public Resenia validarResenia(int IDresenia) { // verifica si la reseña existe, en ese caso devuelve la resenia,
+                                                   // caso contrario informa y devuelve null.
         Resenia reseñaEncontrada = RD.buscarPorId(IDresenia);
         if (reseñaEncontrada == null) {
             System.out.println(" Error: La reseña con ID " + IDresenia + " no existe.");
