@@ -77,7 +77,7 @@ public class TL2 {
 		return listaUsuarios;
 	}
 
-	public List<Pelicula> listarPeliculasOrdenadas(String criterio) {
+	public List<Pelicula> listarPeliculasOrdenadas(String criterio) throws SQLException {
 
 		List<Pelicula> listaPeliculas = PD.listarTodos();
 
