@@ -47,8 +47,8 @@ public class TL2 {
 		// Implementation needed
 	}
 
-	public LinkedList<Usuario> getListaUsuarios() {
-		// Implementation needed
+	public LinkedList<Usuario> getListaUsuarios() throws SQLException {
+
 		return listaUsuarios;
 	}
 
