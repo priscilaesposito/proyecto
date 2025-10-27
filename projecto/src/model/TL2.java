@@ -11,13 +11,22 @@ import DAOjdbc.DatosPersonalesDAOJdbc;
 import DAO.UsuarioDAO;
 import DAOjdbc.UsuarioDAOjdbc;
 
+import DAO.PeliculaDAO;
+import DAOjdbc.PeliculaDAOjdbc;
+
 import Utilidades.OrdenarPorNombreUsuario;
 import Utilidades.OrdenarPorMail;
 
+import Utilidades.OrdenarPorTitulo;
+import Utilidades.OrdenarPorDuracion;
+import Utilidades.OrdenarPorPrimerGenero;
+
 public class TL2 {
+	private PeliculaDAO PD = new DAOjdbc.PeliculaDAOjdbc();
 	private UsuarioDAO UD = new DAOjdbc.UsuarioDAOjdbc();
 	private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
 	private LinkedList<Usuario> listaUsuarios;
+	private LinkedList<Titulo> catalogo;
 
 	public String iniciarSesion(String username, String password) {
 		// Implementation needed
@@ -66,5 +75,27 @@ public class TL2 {
 		}
 
 		return listaUsuarios;
+	}
+
+	public class GestionPeliculas {
+
+		// Asumimos que existe un PeliculaDAO peliculaDAO;
+
+		public List<Pelicula> listarPeliculasOrdenadas(String criterio) {
+
+			List<Pelicula> listaPeliculas = PD.listarTodos();
+
+			if ("TITULO".equalsIgnoreCase(criterio)) {
+				Collections.sort(listaPeliculas, new OrdenarPorTitulo());
+			} else if ("DURACION".equalsIgnoreCase(criterio)) {
+				Collections.sort(listaPeliculas, new OrdenarPorDuracion());
+			} else if ("GENERO".equalsIgnoreCase(criterio)) {
+				Collections.sort(listaPeliculas, new OrdenarPorPrimerGenero());
+			} else {
+				System.out.println("Criterio de ordenación no válido. Se muestra sin ordenar.");
+			}
+
+			return listaPeliculas;
+		}
 	}
 }
