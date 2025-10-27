@@ -138,4 +138,8 @@ public class GestionUsuario {
         }
     }
 
+    public Usuario buscar(String nombreUsuario) throws SQLException {
+        return UD.buscar(nombreUsuario);
+    }
+
 }

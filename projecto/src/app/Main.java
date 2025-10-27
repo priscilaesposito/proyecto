@@ -9,14 +9,17 @@ import DAO.UsuarioDAO;
 import DAO.conexion;
 
 import DAOjdbc.DatosPersonalesDAOJdbc;
+import DAOjdbc.ReseniaDAOJdbc;
 import DAOjdbc.UsuarioDAOjdbc;
 
 import model.Administrador;
 import model.Usuario;
 import model.GestionUsuario;
+import model.Resenia;
 import model.TL2;
 
 import DB.BaseDeDatos;
+import model.ListasyResenias;
 
 public class Main {
 
@@ -26,6 +29,7 @@ public class Main {
     private static GestionUsuario gestionUsuario = new GestionUsuario();
     private static TL2 TL2 = new TL2();
     private static Administrador Administrador = new Administrador();
+    private static ListasyResenias listasyResenias = new ListasyResenias();
 
     private static void registrarDatosPersonales() throws Exception {
         
@@ -36,6 +40,7 @@ public class Main {
 
             //VALIDACION
             gestionUsuario.validacionDatosPersonales(DatosPersonales);
+            
 
             //MOSTRAR Y CONFIRMAR
             mostrarDatosIngresados(DatosPersonales);
@@ -162,6 +167,8 @@ public class Main {
     }
 
 private static void registrarResenia() throws Exception {
+    Resenia r = new Resenia();
+
     //SOLICITAR DATOS
     System.out.println("Ingrese su nombre de usuario:");
     String nombreUsuario = scanner.nextLine();
@@ -171,14 +178,44 @@ private static void registrarResenia() throws Exception {
     //VALIDAR DATOS
     gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
      
-    // Si la validación es exitosa, mostrar un listado numerado con los títulos de las películas disponibles.
-
-    // El usuario indica un número de película válido.
-    // A continuación se solicitan todos los datos de la reseña (calificación,
-    // comentario).
-    // Si el usuario confirma, se guarda en la base de datos.
+    Usuario u = gestionUsuario.buscar(nombreUsuario);
+    r.setID_Usuario(u.getID_USUARIO());
     
-    // Implementation needed
+    //LISTAR PELICULAS
+    String criterio = "TITULO";
+    List<model.Pelicula> peliculas = TL2.listarPeliculasOrdenadas(criterio);
+    System.out.println("\n--- LISTA DE PELÍCULAS REGISTRADAS ---");
+    for (model.Pelicula p : peliculas) {
+        System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
+                ", Género(s): " + String.join(", ", p.getGeneros()) + ", Duración: " + p.getVideo().getDuracion() + " minutos");
+    }
+    //SELECCIONAR PELICULA
+    System.out.println("\nSeleccione el ID de la película que desea reseñar:");
+    int idPelicula = scanner.nextInt();
+    scanner.nextLine(); // Consumir el salto de línea pendiente
+    r.setID_Pelicula(idPelicula);
+
+    
+
+    //DATOS DE LA RESEÑA
+    System.out.println("Ingrese su calificación:");
+    int calificacion = scanner.nextInt();
+    r.setCalificacion(calificacion);
+    scanner.nextLine(); // Consumir el salto de línea pendiente
+    System.out.println("Ingrese su comentario:");
+    String comentario = scanner.nextLine();
+    r.setComentario(comentario);
+
+
+    //CONFIRMAR Y GUARDAR
+    System.out.println("\n¿Son estos datos correctos? (S/N): ");
+    String confirmacion = scanner.nextLine();
+    if (confirmacion.equalsIgnoreCase("S")) {
+        listasyResenias.aniadirResenias(r);
+        System.out.println("Reseña guardada exitosamente.");
+    } else {
+        System.out.println("Operación cancelada.");
+    }
 }
 
     private static void aprobarResenia() throws Exception {
@@ -245,6 +282,7 @@ private static void registrarResenia() throws Exception {
         System.out.println("Ingrese Contrasenia:");
         nuevoUsuario.setContrasenia(scanner.nextLine());
     }
+
 
 
     public static void main(String[] args) throws Exception {

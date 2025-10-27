@@ -130,5 +130,20 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         return usuario;
     }
 
-}
+    @Override
+    public Usuario buscar(String nombreUsuario) throws SQLException {
+        String sql = SELECT_USUARIO_CON_DATOS + "WHERE U.NOMBRE_USUARIO = ?";
+        try (Connection conn = BaseDeDatos.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            pstmt.setString(1, nombreUsuario);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToUsuario(rs);
+                }
+            }
+        }
+        return null;
+    }
+}

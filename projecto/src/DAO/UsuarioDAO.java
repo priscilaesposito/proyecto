@@ -36,6 +36,7 @@ public interface UsuarioDAO {
      * (Funcionalidad 6) 
      */
     Usuario validar(String nombreUsuario, String contrasenia) throws SQLException;
-
+     
+    Usuario buscar(String nombreUsuario) throws SQLException;
 
 }
