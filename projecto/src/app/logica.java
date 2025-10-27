@@ -165,34 +165,6 @@ public class logica{
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
-private static Resenia solicitarDatosParaResenia() throws SQLException {
-      Resenia r = new Resenia();
-    System.out.println("Ingrese su nombre de usuario:");
-    String nombreUsuario = scanner.nextLine();
-    System.out.println("Ingrese su contraseña:");
-    String contrasenia = scanner.nextLine();
-     //VALIDAR DATOS
-    gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
-      
-    Usuario u = gestionUsuario.buscar(nombreUsuario);
-    if (u == null) {
-        System.out.println("Error: Usuario no encontrado. Verifique sus credenciales.");
-        return null;
-    }
-    r.setID_Usuario(u.getID_USUARIO());
-    return r;
-}
-
-private static void mostrarListaPeliculas() throws Exception {
-    String criterio = "TITULO";
-    List<model.Pelicula> peliculas = TL2.listarPeliculasOrdenadas(criterio);
-    System.out.println("\n--- LISTA DE PELICULAS REGISTRADAS ---");
-    for (model.Pelicula p : peliculas) {
-        System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
-                ", Género(s): " + String.join(", ", p.getGeneros()) + ", Duración: " + p.getVideo().getDuracion() + " minutos");
-    }
-}
-
 
 public static void registrarResenia() throws Exception {
    
@@ -239,15 +211,6 @@ public static void registrarResenia() throws Exception {
         System.out.println("Operación cancelada.");
     }
 }
-private static void mostrarReseniasNoAprobadas() throws Exception {
-     //RESENIAS NO APROBADAS
-    List<Resenia> reseniasNoAprobadas = listasyResenias.listarReseniasNoAprobadas();
-    for (Resenia r : reseniasNoAprobadas) {
-        System.out.println("ID Reseña: " + r.getID_Resenia() + ", ID Película: " + r.getID_Pelicula() +
-                ", ID Usuario: " + r.getID_Usuario() + ", Calificación: " + r.getCalificacion() +
-                ", Comentario: " + r.getComentario() + ", Fecha y Hora: " + r.getFechaHora());
-    }
-}
 
 public static void aprobarResenia() throws Exception {
     //RESENIAS NO APROBADAS
@@ -280,6 +243,43 @@ public static void aprobarResenia() throws Exception {
     }
 
 }
+private static Resenia solicitarDatosParaResenia() throws SQLException {
+      Resenia r = new Resenia();
+    System.out.println("Ingrese su nombre de usuario:");
+    String nombreUsuario = scanner.nextLine();
+    System.out.println("Ingrese su contraseña:");
+    String contrasenia = scanner.nextLine();
+     //VALIDAR DATOS
+    gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
+      
+    Usuario u = gestionUsuario.buscar(nombreUsuario);
+    if (u == null) {
+        System.out.println("Error: Usuario no encontrado. Verifique sus credenciales.");
+        return null;
+    }
+    r.setID_Usuario(u.getID_USUARIO());
+    return r;
+}
+
+private static void mostrarListaPeliculas() throws Exception {
+    String criterio = "TITULO";
+    List<model.Pelicula> peliculas = TL2.listarPeliculasOrdenadas(criterio);
+    System.out.println("\n--- LISTA DE PELICULAS REGISTRADAS ---");
+    for (model.Pelicula p : peliculas) {
+        System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
+                ", Género(s): " + String.join(", ", p.getGeneros()) + ", Duración: " + p.getVideo().getDuracion() + " minutos");
+    }
+}
+private static void mostrarReseniasNoAprobadas() throws Exception {
+     //RESENIAS NO APROBADAS
+    List<Resenia> reseniasNoAprobadas = listasyResenias.listarReseniasNoAprobadas();
+    for (Resenia r : reseniasNoAprobadas) {
+        System.out.println("ID Reseña: " + r.getID_Resenia() + ", ID Película: " + r.getID_Pelicula() +
+                ", ID Usuario: " + r.getID_Usuario() + ", Calificación: " + r.getCalificacion() +
+                ", Comentario: " + r.getComentario() + ", Fecha y Hora: " + r.getFechaHora());
+    }
+}
+
 private static void mostrardatosresenia(Resenia r) {
     System.out.println("\n--- DATOS DE LA RESEÑA ---");
     System.out.println("ID Película: " + r.getID_Pelicula());
