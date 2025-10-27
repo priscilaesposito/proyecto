@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,7 +31,6 @@ public class Administrador extends Usuario {
      * @param T Titulo a dar de baja.
      */
     public void darDeBaja(Titulo T) {
-        // Lógica para dar de baja el título
     }
 
     /**
@@ -41,16 +39,14 @@ public class Administrador extends Usuario {
      * @param T Titulo a dar de alta.
      */
     public void darAlta(Titulo T) {
-        // Lógica para dar de alta el título
     }
 
     /**
-     * Modifica la información de un titulo existente.
+     * Modifica la informacion de un titulo existente.
      *
      * @param T Titulo a modificar.
      */
     public void modificar(Titulo T) {
-        // Lógica para modificar el título
     }
 
     public void validarRegistroPelicula(Pelicula pelicula) {

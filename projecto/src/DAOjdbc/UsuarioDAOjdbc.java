@@ -74,25 +74,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
     }
 
     @Override
-    public void actualizar(Usuario usuario) {
-        String sql = "UPDATE USUARIO SET NOMBRE_USUARIO = ?, EMAIL = ?, CONTRASENIA = ?, ID_DATOS_PERSONALES = ? WHERE ID = ?";
-        try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-           pstmt.setString(1, usuario.getUsername());
-            pstmt.setString(2, usuario.getCorreo());
-            pstmt.setString(3, usuario.getContrasenia());
-            pstmt.setInt(4, usuario.getID_DATOS_PERSONALES());
-            pstmt.setInt(5, usuario.getID_USUARIO()); // ID para el WHERE
-            
-            pstmt.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar usuario: " + e.getMessage());
-        }
-    }
-
-    @Override
     public Usuario validar(String nombreUsuario, String contrasenia) {
         String sql = SELECT_USUARIO_CON_DATOS + "WHERE U.NOMBRE_USUARIO = ? AND U.CONTRASENIA = ?";
         try (Connection conn = BaseDeDatos.conectar();

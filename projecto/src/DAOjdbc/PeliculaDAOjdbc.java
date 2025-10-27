@@ -77,43 +77,11 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
         return peliculas;
     }
 
-    @Override
-    public void actualizar(Pelicula pelicula) {
-        String sql = "UPDATE PELICULA SET GENERO = ?, TITULO = ?, RESUMEN = ?, DIRECTOR = ?, DURACION = ? WHERE ID = ?";
-        try (Connection conn = BaseDeDatos.conectar();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            // pri
-            LinkedList<String> generos = pelicula.getGeneros();
-            int k;
-            String genero = "";
-            for (k = 0; k < generos.size() - 1; k++) {
-                genero += generos.get(k) + ", ";
-
-            }
-            pstmt.setString(1, genero);
-            pstmt.setString(2, pelicula.getMetadatos().getTitulo());
-            pstmt.setString(3, pelicula.getMetadatos().getSipnosis());
-            pstmt.setString(4, pelicula.getMetadatos().getDirector());
-            pstmt.setDouble(5, pelicula.getVideo().getDuracion());
-            pstmt.setInt(6, pelicula.getID()); // ID para el WHERE
-
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar la película: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Helper para convertir un ResultSet en un objeto Pelicula.
-     */
     private Pelicula mapResultSetToPelicula(ResultSet rs) throws SQLException {
         Pelicula p = new Pelicula();
         p.setID(rs.getInt("ID"));
         p.getMetadatos().setTitulo(rs.getString("TITULO"));
 
-        // Procesar géneros: dividir el string por comas y agregar cada uno a la lista
         String generos = rs.getString("GENERO");
         if (generos != null) {
             for (String genero : generos.split(",")) {
@@ -123,8 +91,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
 
         p.getMetadatos().setSipnosis(rs.getString("RESUMEN"));
         p.getMetadatos().setDirector(rs.getString("DIRECTOR"));
-        // Nota: La duración se maneja en la clase Video, no directamente en Pelicula
-
+        
         return p;
     }
 }

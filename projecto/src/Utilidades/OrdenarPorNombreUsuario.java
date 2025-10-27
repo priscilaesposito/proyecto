@@ -1,4 +1,4 @@
-package Utilidades; // Un paquete común para utilidades de ordenación
+package Utilidades;
 
 import java.util.Comparator;
 import model.Usuario;

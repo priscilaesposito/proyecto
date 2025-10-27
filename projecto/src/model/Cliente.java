@@ -12,7 +12,7 @@ package model;
  */
 
 public class Cliente extends Usuario {
-	    private GestionListas gestionListas;
+	    //private GestionListas gestionListas;
 	    private boolean activo;
 	    private String ubicacion;
 	    private int tiempo;

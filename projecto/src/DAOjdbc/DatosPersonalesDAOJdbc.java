@@ -31,24 +31,6 @@ public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
     }
 
     @Override
-    public Usuario buscarPorId(int id) {
-        String sql = "SELECT * FROM DATOS_PERSONALES WHERE ID = ?";
-        try (Connection conn = BaseDeDatos.conectar();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, id);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return tomarDatos(rs);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al buscar datos personales: " + e.getMessage());
-        }
-        return null;
-    }
-
-    @Override
     public List<Usuario> listarTodos() throws SQLException {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM DATOS_PERSONALES";
@@ -72,42 +54,6 @@ public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
         datos.setApellido(rs.getString("APELLIDO"));
         datos.setDNI(rs.getInt("DNI"));
         return datos;
-    }
-
-    @Override
-    public void actualizar(Usuario datos) {
-        String sql = "UPDATE DATOS_PERSONALES SET NOMBRES = ?, APELLIDO = ?, DNI = ? WHERE ID = ?";
-        try (Connection conn = BaseDeDatos.conectar();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, datos.getNombre());
-            pstmt.setString(2, datos.getApellido());
-            pstmt.setInt(3, datos.getDNI());
-            pstmt.setInt(4, datos.getID_DATOS_PERSONALES()); // ID para el WHERE
-
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar datos personales: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public Usuario buscarPorDni(int dni) {
-        String sql = "SELECT * FROM DATOS_PERSONALES WHERE DNI = ?";
-        try (Connection conn = BaseDeDatos.conectar();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, dni);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return tomarDatos(rs);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al buscar por DNI: " + e.getMessage());
-        }
-        return null;
     }
 
     @Override
