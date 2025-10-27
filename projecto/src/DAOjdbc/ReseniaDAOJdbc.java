@@ -33,7 +33,7 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("Error al registrar reseña: " + e.getMessage());
+            System.out.println("Error al registrar resenia: " + e.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error al buscar reseña: " + e.getMessage());
+            System.out.println("Error al buscar resenia: " + e.getMessage());
         }
         return null;
     }

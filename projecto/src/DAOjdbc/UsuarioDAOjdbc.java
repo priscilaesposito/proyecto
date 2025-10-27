@@ -13,12 +13,11 @@ import model.Usuario;
 
 public class UsuarioDAOjdbc implements UsuarioDAO {
 
-    // Constante para el SQL con JOIN, evita repetir codigo
     private static final String SELECT_USUARIO_CON_DATOS = 
         "SELECT U.ID, U.NOMBRE_USUARIO, U.EMAIL, U.CONTRASENIA, " +
         "DP.ID AS DP_ID, DP.NOMBRES, DP.APELLIDO, DP.DNI " +
         "FROM USUARIO U " +
-        "JOIN DATOS_PERSONALES DP ON U.ID_DATOS_PERSONALES = DP.ID "; // [cite: 85-86]
+        "JOIN DATOS_PERSONALES DP ON U.ID_DATOS_PERSONALES = DP.ID "; 
 
     @Override
     public void registrar(Usuario usuario) {
@@ -113,9 +112,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         return null;
     }
 
-    /**
-     * Helper para convertir un ResultSet (con JOIN) en un objeto Usuario.
-     */
     private Usuario mapResultSetToUsuario(ResultSet rs) throws SQLException {
         
         Usuario usuario = new Usuario();
