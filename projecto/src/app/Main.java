@@ -143,6 +143,23 @@ public class Main {
         }
     }
 
+    private static void listarPeliculas() throws Exception {
+        try {
+            System.out.println("Seleccione el criterio de ordenamiento:");
+            System.out.println("TITULO, DIRECTOR O GENERO");
+            String criterio = scanner.nextLine();
+            List<model.Pelicula> peliculas = TL2.listarPelic);
+            System.out.println("\n--- LISTA DE PELÍCULAS REGISTRADAS ---");
+            for (model.Pelicula p : peliculas) {
+                System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
+                        ", Género(s): " + String.join(", ", p.getGeneros()) + ", Duración: " + p.getVideo().getDuracion() + " minutos");
+            }
+        } 
+        catch (SQLException e) {
+            System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
+        }
+    }
+
     private static void mostrarDatosPelicula(model.Pelicula p) {
         System.out.println("\n--- DATOS INGRESADOS DE LA PELÍCULA ---");
         System.out.println("Género(s): " + String.join(", ", p.getGeneros()));
@@ -229,7 +246,13 @@ public class Main {
                     listarUsuarios();
                     break;
                 case 5:
-                   //listarPeliculas();
+                    listarPeliculas();
+                     break;
+                case 6:
+                    //registrarResenia();
+                     break;
+                case 7:
+                    //aprobarResenia();
                      break;
                 default:
                     System.out.println("Opción no válida. Saliendo del programa.");
