@@ -12,6 +12,4 @@ public interface PeliculaDAO {
     Pelicula buscarPorId(int id);
 
     List<Pelicula> listarTodos();
-
-    void actualizar(Pelicula pelicula);
 }
