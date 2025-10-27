@@ -18,20 +18,20 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     public void registrar(Resenia resenia) {
 
         String sql = "INSERT INTO RESENIA (CALIFICACION, COMENTARIO, APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) " +
-                       "VALUES (?, ?, ?, ?, ?, ?)";
-        
+                "VALUES (?, ?, ?, ?, ?, ?)";
+
         try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, resenia.getCalificacion());
             pstmt.setString(2, resenia.getComentario());
-            pstmt.setInt(3, resenia.isAprobado()); 
-            pstmt.setString(4, resenia.getFechaHora()); 
-            pstmt.setInt( 5, resenia.getID_Usuario());
+            pstmt.setInt(3, resenia.isAprobado());
+            pstmt.setString(4, resenia.getFechaHora());
+            pstmt.setInt(5, resenia.getID_Usuario());
             pstmt.setInt(6, resenia.getID_Pelicula());
-            
+
             pstmt.executeUpdate();
-            
+
         } catch (SQLException e) {
             System.out.println("Error al registrar reseña: " + e.getMessage());
         }
@@ -41,8 +41,8 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     public Resenia buscarPorId(int id) {
         String sql = "SELECT * FROM RESENIA WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -56,53 +56,14 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     }
 
     @Override
-    public List<Resenia> listarTodos() {
-        List<Resenia> lista = new ArrayList<>();
-        String sql = "SELECT * FROM RESENIA";
-        try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            
-            while (rs.next()) {
-                lista.add(mapResultSetToResenia(rs));
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al listar todas las reseñas: " + e.getMessage());
-        }
-        return lista;
-    }
-
-    @Override
-    public void actualizar(Resenia resenia) {
-        String sql = "UPDATE RESENIA SET CALIFICACION = ?, COMENTARIO = ?, APROBADO = ?, " +
-                       "FECHA_HORA = ?, ID_USUARIO = ?, ID_PELICULA = ? WHERE ID = ?";
-        try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setInt(1, resenia.getCalificacion());
-            pstmt.setString(2, resenia.getComentario());
-            pstmt.setInt(3, resenia.isAprobado() );
-            pstmt.setString(4, resenia.getFechaHora());
-            pstmt.setInt(5, resenia.getID_Usuario());
-            pstmt.setInt(6, resenia.getID_Pelicula());
-            pstmt.setInt(7, resenia.getID_Resenia()); 
-            
-            pstmt.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar la resenia: " + e.getMessage());
-        }
-    }
-
-    @Override
     public List<Resenia> listarNoAprobadas() {
         List<Resenia> lista = new ArrayList<>();
         String sql = "SELECT * FROM RESENIA WHERE APROBADO = 0";
 
         try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                ResultSet rs = pstmt.executeQuery()) {
+
             while (rs.next()) {
                 lista.add(mapResultSetToResenia(rs));
             }
@@ -116,11 +77,11 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
     public void aprobarResenia(int idResenia) {
         String sql = "UPDATE RESENIA SET APROBADO = 1 WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, idResenia);
             pstmt.executeUpdate();
-            
+
         } catch (SQLException e) {
             System.out.println("Error al aprobar la resenia: " + e.getMessage());
         }
@@ -138,5 +99,4 @@ public class ReseniaDAOjdbc implements ReseniaDAO {
         return resenia;
     }
 
-  
 }
