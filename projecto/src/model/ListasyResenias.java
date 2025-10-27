@@ -53,4 +53,8 @@ public class ListasyResenias {
         RD.aprobarResenia(idResenia);
     }
 
+    public Resenia buscarReseniaPorId(int idResenia) {
+        return RD.buscarPorId(idResenia);
+    }
+
 }

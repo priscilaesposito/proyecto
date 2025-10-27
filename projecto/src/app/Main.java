@@ -227,12 +227,50 @@ private static void registrarResenia() throws Exception {
     }
 }
 
-    private static void aprobarResenia() throws Exception {
-        // Implementation needed
+private static void aprobarResenia() throws Exception {
+    //RESENIAS NO APROBADAS
+    List<Resenia> reseniasNoAprobadas = listasyResenias.listarReseniasNoAprobadas();
+    for (Resenia r : reseniasNoAprobadas) {
+        System.out.println("ID Reseña: " + r.getID_Resenia() + ", ID Película: " + r.getID_Pelicula() +
+                ", ID Usuario: " + r.getID_Usuario() + ", Calificación: " + r.getCalificacion() +
+                ", Comentario: " + r.getComentario() + ", Fecha y Hora: " + r.getFechaHora());
+    }
+    //ID RESENIA
+    System.out.println("\nIngrese el ID de la reseña que desea aprobar:");
+    int idResenia = scanner.nextInt();
+    Resenia r = listasyResenias.buscarReseniaPorId(idResenia);
+    if (r == null) {
+        System.out.println("Error: Reseña no encontrada. Verifique el ID ingresado.");
+        return;
     }
 
+    //VALIDACION
+    listasyResenias.validarResenia(idResenia);
+    
+    // Se muestra la reseña seleccionada.
+    mostrardatosresenia(r);
 
+    //APROBAR RESENIA
+    System.out.println("¿Desea aprobar esta reseña? (S/N): ");
+    scanner.nextLine(); // Consumir el salto de línea pendiente
+    String confirmacion = scanner.nextLine();
+    if (confirmacion.equalsIgnoreCase("S")) {
+        listasyResenias.aprobarResenia(idResenia);
+        System.out.println("Reseña aprobada exitosamente.");
+    } else {
+        System.out.println("Operación cancelada.");
+    }
 
+}
+
+private static void mostrardatosresenia(Resenia r) {
+    System.out.println("\n--- DATOS DE LA RESEÑA ---");
+    System.out.println("ID Película: " + r.getID_Pelicula());
+    System.out.println("ID Usuario: " + r.getID_Usuario());
+    System.out.println("Calificación: " + r.getCalificacion());
+    System.out.println("Comentario: " + r.getComentario());
+    System.out.println("Fecha y Hora: " + r.getFechaHora());
+}
     private static void mostrarDatosPelicula(model.Pelicula p) {
         System.out.println("\n--- DATOS INGRESADOS DE LA PELÍCULA ---");
         System.out.println("Género(s): " + String.join(", ", p.getGeneros()));
