@@ -34,22 +34,17 @@ public class Main {
 
     private static void registrarDatosPersonales() throws Exception {
         
-        //SOLICITAR DATOS 
         Usuario DatosPersonales = new Usuario();
         solicitarDatosPersonales(DatosPersonales);
         try {
 
-            //VALIDACION
             gestionUsuario.validacionDatosPersonales(DatosPersonales);
             
-
-            //MOSTRAR Y CONFIRMAR
             mostrarDatosIngresados(DatosPersonales);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
-                //GUARDAR EN LA BASE DE DATOS
                 gestionUsuario.registrarDatosPersonales(DatosPersonales);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
@@ -68,30 +63,25 @@ public class Main {
         Usuario u = new Usuario();
        
         try {
-            //LISTA DATOS PERSONALES
             List<Usuario> DP= TL2.getListaPersonas();
 
             for (Usuario d : DP) {
                 System.out.println("ID: " + d.getID_DATOS_PERSONALES() + " - Nombre: " + d.getNombre() + " " + d.getApellido() + " - DNI: " + d.getDNI());
             }
            
-            //SELECCIONAR DATOS PERSONALES EXISTENTES
             System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
             int idSeleccionado = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea pendiente
+            scanner.nextLine(); 
             
-            //SOLICITAR DATOS DEL USUARIO
              solicitarDatosUsuario(u);
              gestionUsuario.ValidacionUsuario(u);
              u.setID_DATOS_PERSONALES(idSeleccionado);
 
-            //MOSTRAR Y CONFIRMAR 
             mostrarUsuarioIngresados(u);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
-                //GUARDAR EN LA BASE DE DATOS
                 gestionUsuario.registrarUsuario(u);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
@@ -110,17 +100,14 @@ public class Main {
         model.Pelicula p = new model.Pelicula();
        
         try {
-            //SOLICITAR DATOS DE LA PELICULA
            solicitarDatosPelicula(p);
             Administrador.validarRegistroPelicula(p);
 
-            //MOSTRAR Y CONFIRMAR
             mostrarDatosPelicula(p);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
-                //GUARDAR EN LA BASE DE DATOS
                 Administrador.almacenarPelicula(p);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
@@ -129,7 +116,7 @@ public class Main {
 
         } 
         catch (SQLException e) {
-            System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
+            System.err.println("\n[ERROR DE BD] Fallo la operación de la base de datos: " + e.getMessage());
         }
     }
 
