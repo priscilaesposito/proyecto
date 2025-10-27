@@ -148,7 +148,7 @@ public class Main {
             System.out.println("Seleccione el criterio de ordenamiento:");
             System.out.println("TITULO, DIRECTOR O GENERO");
             String criterio = scanner.nextLine();
-            List<model.Pelicula> peliculas = TL2.listarPelic);
+            List<model.Pelicula> peliculas = TL2.listarPeliculasOrdenadas(criterio);
             System.out.println("\n--- LISTA DE PELÍCULAS REGISTRADAS ---");
             for (model.Pelicula p : peliculas) {
                 System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
