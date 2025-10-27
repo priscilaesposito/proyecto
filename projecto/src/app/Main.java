@@ -170,7 +170,7 @@ private static void registrarResenia() throws Exception {
 
     //VALIDAR DATOS
     gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
-
+     
     // Si la validación es exitosa, mostrar un listado numerado con los títulos de las películas disponibles.
 
     // El usuario indica un número de película válido.
