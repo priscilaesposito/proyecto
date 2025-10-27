@@ -1,15 +1,14 @@
 package model;
 
-import model.Usuario;
 
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.LinkedList;
 
 import DAO.DatosPersonalesDAO;
-import DAOjdbc.DatosPersonalesDAOJdbc;
-
 import DAO.UsuarioDAO;
+
+import DAOjdbc.DatosPersonalesDAOJdbc;
 import DAOjdbc.UsuarioDAOjdbc;
 
 public class GestionUsuario {
