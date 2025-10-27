@@ -23,8 +23,6 @@ public class Resenia {
         this.ID_Resenia = ID_Resenia;
     }
 
-    // --- Getters ---
-
     public int getCalificacion() {
         return calificacion;
     }
@@ -52,8 +50,6 @@ public class Resenia {
     public int getID_Resenia() {
         return ID_Resenia;
     }
-
-    // --- Setters ---
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;

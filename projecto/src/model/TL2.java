@@ -29,22 +29,18 @@ public class TL2 {
 	private LinkedList<Titulo> catalogo;
 
 	public String iniciarSesion(String username, String password) {
-		// Implementation needed
 		return null;
 	}
 
 	public boolean autenticacion(String token) {
-		// Implementation needed
 		return false;
 	}
 
 	public LinkedList<Titulo> getCatalogo() {
-		// Implementation needed
 		return null;
 	}
 
 	private void restringirGeolocalizacionCatalogo() {
-		// Implementation needed
 	}
 
 	public LinkedList<Usuario> getListaUsuarios() throws SQLException {
@@ -71,7 +67,7 @@ public class TL2 {
 			Collections.sort(listaUsuarios, new OrdenarPorMail());
 
 		} else {
-			System.out.println("Criterio de ordenación no válido. Se muestra sin ordenar.");
+			System.out.println("Criterio de ordenacian no valido. Se muestra sin ordenar.");
 		}
 
 		return listaUsuarios;
@@ -88,7 +84,7 @@ public class TL2 {
 		} else if ("GENERO".equalsIgnoreCase(criterio)) {
 			Collections.sort(listaPeliculas, new OrdenarPorPrimerGenero());
 		} else {
-			System.out.println("Criterio de ordenación no válido. Se muestra sin ordenar.");
+			System.out.println("Criterio de ordenacion no valido. Se muestra sin ordenar.");
 		}
 
 		return listaPeliculas;
