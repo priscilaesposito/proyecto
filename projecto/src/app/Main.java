@@ -1,21 +1,22 @@
 package app;
 
-import model.Usuario;
-
 import java.util.List;
 import java.util.Scanner;
+import java.sql.SQLException;
 
 import DAO.DatosPersonalesDAO;
 import DAO.UsuarioDAO;
 import DAO.conexion;
+
 import DAOjdbc.DatosPersonalesDAOJdbc;
+import DAOjdbc.UsuarioDAOjdbc;
+
+import model.Administrador;
+import model.Usuario;
 import model.GestionUsuario;
 import model.TL2;
-import DAOjdbc.UsuarioDAOjdbc;
-import DB.BaseDeDatos;
-import model.Administrador;
 
-import java.sql.SQLException;
+import DB.BaseDeDatos;
 
 public class Main {
 
@@ -28,21 +29,21 @@ public class Main {
 
     private static void registrarDatosPersonales() throws Exception {
         
-        // 1. SOLICITAR DATOS 
+        //SOLICITAR DATOS 
         Usuario DatosPersonales = new Usuario();
         solicitarDatosPersonales(DatosPersonales);
         try {
-            
-            // 2. VALIDACIÓN DE UNICIDAD DE DNI (Lógica de Persistencia en DAO)
+
+            //VALIDACION
             gestionUsuario.validacionDatosPersonales(DatosPersonales);
 
-            // 3. MOSTRAR Y CONFIRMAR al usuario
+            //MOSTRAR Y CONFIRMAR
             mostrarDatosIngresados(DatosPersonales);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
-                // 4. GUARDAR EN LA BASE DE DATOS
+                //GUARDAR EN LA BASE DE DATOS
                 gestionUsuario.registrarDatosPersonales(DatosPersonales);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
@@ -61,30 +62,30 @@ public class Main {
         Usuario u = new Usuario();
        
         try {
-            // 1. Listado y eleccion de datos personales existentes
+            //LISTA DATOS PERSONALES
             List<Usuario> DP= TL2.getListaPersonas();
 
             for (Usuario d : DP) {
                 System.out.println("ID: " + d.getID_DATOS_PERSONALES() + " - Nombre: " + d.getNombre() + " " + d.getApellido() + " - DNI: " + d.getDNI());
             }
            
-            // 2. SELECCIONAR DATOS PERSONALES EXISTENTES
+            //SELECCIONAR DATOS PERSONALES EXISTENTES
             System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
             int idSeleccionado = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea pendiente
             
-            //3. SOLICITAR DATOS DEL USUARIO
+            //SOLICITAR DATOS DEL USUARIO
              solicitarDatosUsuario(u);
              gestionUsuario.ValidacionUsuario(u);
              u.setID_DATOS_PERSONALES(idSeleccionado);
 
-            // 3. MOSTRAR Y CONFIRMAR al usuario
+            //MOSTRAR Y CONFIRMAR 
             mostrarUsuarioIngresados(u);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
-                // 4. GUARDAR EN LA BASE DE DATOS
+                //GUARDAR EN LA BASE DE DATOS
                 gestionUsuario.registrarUsuario(u);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
@@ -103,17 +104,17 @@ public class Main {
         model.Pelicula p = new model.Pelicula();
        
         try {
-            // 1. SOLICITAR DATOS DE LA PELÍCULA
+            //SOLICITAR DATOS DE LA PELICULA
            solicitarDatosPelicula(p);
             Administrador.validarRegistroPelicula(p);
 
-            // 2. MOSTRAR Y CONFIRMAR al usuario
+            //MOSTRAR Y CONFIRMAR
             mostrarDatosPelicula(p);
             System.out.println("\n¿Son estos datos correctos? (S/N): ");
             String confirmacion = scanner.nextLine();
 
             if ("S".equals(confirmacion)) {
-                // 3. GUARDAR EN LA BASE DE DATOS
+                //GUARDAR EN LA BASE DE DATOS
                 Administrador.almacenarPelicula(p);
                 System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
             } else {
@@ -159,6 +160,32 @@ public class Main {
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
+
+private static void registrarResenia() throws Exception {
+    //SOLICITAR DATOS
+    System.out.println("Ingrese su nombre de usuario:");
+    String nombreUsuario = scanner.nextLine();
+    System.out.println("Ingrese su contraseña:");
+    String contrasenia = scanner.nextLine();
+
+    //VALIDAR DATOS
+    gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
+
+    // Si la validación es exitosa, mostrar un listado numerado con los títulos de las películas disponibles.
+
+    // El usuario indica un número de película válido.
+    // A continuación se solicitan todos los datos de la reseña (calificación,
+    // comentario).
+    // Si el usuario confirma, se guarda en la base de datos.
+    
+    // Implementation needed
+}
+
+    private static void aprobarResenia() throws Exception {
+        // Implementation needed
+    }
+
+
 
     private static void mostrarDatosPelicula(model.Pelicula p) {
         System.out.println("\n--- DATOS INGRESADOS DE LA PELÍCULA ---");
@@ -222,9 +249,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         try {
-            // Inicializar la conexión (opcional, pero buena práctica)
+            
             conexion.conectar(); 
             BaseDeDatos.inicializarBaseDeDatos();
+
             //menu para a elegir modulo
             System.out.println("Seleccione una opción:");
             System.out.println("1. Registrar Datos Personales");
@@ -249,10 +277,10 @@ public class Main {
                     listarPeliculas();
                      break;
                 case 6:
-                    //registrarResenia();
+                    registrarResenia();
                      break;
                 case 7:
-                    //aprobarResenia();
+                    aprobarResenia();
                      break;
                 default:
                     System.out.println("Opción no válida. Saliendo del programa.");
@@ -265,7 +293,7 @@ public class Main {
         } 
 
         finally {
-            conexion.desconectar(); // Cierra la conexión al finalizar
+            conexion.desconectar(); // Cierra la conexion
             scanner.close();
         }
     }
