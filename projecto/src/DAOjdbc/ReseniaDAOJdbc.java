@@ -12,7 +12,7 @@ import DAO.ReseniaDAO;
 import DB.BaseDeDatos;
 import model.Resenia;
 
-public class ReseniaDAOjdbc implements ReseniaDAO {
+public class ReseniaDAOJdbc implements ReseniaDAO {
 
     @Override
     public void registrar(Resenia resenia) {

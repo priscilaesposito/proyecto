@@ -16,6 +16,7 @@ public interface UsuarioDAO {
     void actualizar(Usuario usuario) throws SQLException;
 
     Usuario validar(String nombreUsuario, String contrasenia) throws SQLException;
-
+     
+    Usuario buscar(String nombreUsuario) throws SQLException;
 
 }
