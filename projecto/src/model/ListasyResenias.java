@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,15 +32,15 @@ public class ListasyResenias {
         this.puntuacion = (double) this.sumaPuntuacion / this.cantPuntuacion;
     }
 
-    public void aniadirResenias(Resenia resenia) {
+    public void aniadirResenias(Resenia resenia) throws SQLException {
         RD.registrar(resenia);
     }
 
-    public List<Resenia> listarReseniasNoAprobadas() {
+    public List<Resenia> listarReseniasNoAprobadas() throws SQLException {
         return RD.listarNoAprobadas();
     }
 
-    public Resenia validarResenia(int IDresenia) { // verifica si la reseni existe, en ese caso devuelve la resenia,
+    public Resenia validarResenia(int IDresenia) throws SQLException { // verifica si la reseni existe, en ese caso devuelve la resenia,
                                                    // caso contrario informa y devuelve null.
         Resenia reseñaEncontrada = RD.buscarPorId(IDresenia);
         if (reseñaEncontrada == null) {
@@ -49,11 +50,11 @@ public class ListasyResenias {
         return reseñaEncontrada;
     }
 
-    public void aprobarResenia(int idResenia) {
+    public void aprobarResenia(int idResenia) throws SQLException {
         RD.aprobarResenia(idResenia);
     }
 
-    public Resenia buscarReseniaPorId(int idResenia) {
+    public Resenia buscarReseniaPorId(int idResenia) throws SQLException {
         return RD.buscarPorId(idResenia);
     }
 

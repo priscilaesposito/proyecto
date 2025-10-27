@@ -15,7 +15,7 @@ import model.Resenia;
 public class ReseniaDAOJdbc implements ReseniaDAO {
 
     @Override
-    public void registrar(Resenia resenia) {
+    public void registrar(Resenia resenia)throws SQLException {
 
         String sql = "INSERT INTO RESENIA (CALIFICACION, COMENTARIO, APROBADO, FECHA_HORA, ID_USUARIO, ID_PELICULA) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -38,7 +38,7 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
     }
 
     @Override
-    public Resenia buscarPorId(int id) {
+    public Resenia buscarPorId(int id) throws SQLException{
         String sql = "SELECT * FROM RESENIA WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -56,7 +56,7 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
     }
 
     @Override
-    public List<Resenia> listarNoAprobadas() {
+    public List<Resenia> listarNoAprobadas() throws SQLException{
         List<Resenia> lista = new ArrayList<>();
         String sql = "SELECT * FROM RESENIA WHERE APROBADO = 0";
 
@@ -74,7 +74,7 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
     }
 
     @Override
-    public void aprobarResenia(int idResenia) {
+    public void aprobarResenia(int idResenia)throws SQLException {
         String sql = "UPDATE RESENIA SET APROBADO = 1 WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

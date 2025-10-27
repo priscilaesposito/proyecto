@@ -15,7 +15,7 @@ import model.Usuario;
 public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
 
     @Override
-    public void registrar(Usuario datos) {
+    public void registrar(Usuario datos) throws SQLException{
         String sql = "INSERT INTO DATOS_PERSONALES (NOMBRES, APELLIDO, DNI) VALUES (?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

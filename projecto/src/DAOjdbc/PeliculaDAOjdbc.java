@@ -42,7 +42,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     }
 
     @Override
-    public Pelicula buscarPorId(int id) {
+    public Pelicula buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM PELICULA WHERE ID = ?";
         try (Connection conn = BaseDeDatos.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -60,7 +60,7 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
     }
 
     @Override
-    public List<Pelicula> listarTodos() {
+    public List<Pelicula> listarTodos() throws SQLException{
         List<Pelicula> peliculas = new ArrayList<>();
         String sql = "SELECT * FROM PELICULA";
 

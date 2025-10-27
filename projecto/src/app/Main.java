@@ -9,7 +9,6 @@ import DAO.UsuarioDAO;
 import DAO.conexion;
 
 import DAOjdbc.DatosPersonalesDAOJdbc;
-import DAOjdbc.ReseniaDAOJdbc;
 import DAOjdbc.UsuarioDAOjdbc;
 
 import model.Administrador;

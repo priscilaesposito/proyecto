@@ -20,7 +20,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
         "JOIN DATOS_PERSONALES DP ON U.ID_DATOS_PERSONALES = DP.ID "; 
 
     @Override
-    public void registrar(Usuario usuario) {
+    public void registrar(Usuario usuario)throws SQLException {
         String sql = "INSERT INTO USUARIO (NOMBRE_USUARIO, EMAIL, CONTRASENIA, ID_DATOS_PERSONALES) VALUES (?, ?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -38,7 +38,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
     }
 
     @Override
-    public Usuario buscarPorId(int id) {
+    public Usuario buscarPorId(int id) throws SQLException {
         String sql = SELECT_USUARIO_CON_DATOS + "WHERE U.ID = ?";
         try (Connection conn = BaseDeDatos.conectar();           
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -56,7 +56,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
     }
 
     @Override
-    public List<Usuario> listarTodos() {
+    public List<Usuario> listarTodos() throws SQLException {
         List<Usuario> lista = new ArrayList<>();
         String sql = SELECT_USUARIO_CON_DATOS; // 
 
@@ -74,7 +74,7 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
     }
 
     @Override
-    public Usuario validar(String nombreUsuario, String contrasenia) {
+    public Usuario validar(String nombreUsuario, String contrasenia) throws SQLException{
         String sql = SELECT_USUARIO_CON_DATOS + "WHERE U.NOMBRE_USUARIO = ? AND U.CONTRASENIA = ?";
         try (Connection conn = BaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

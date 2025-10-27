@@ -9,7 +9,7 @@ public interface PeliculaDAO {
 
     void registrar(Pelicula pelicula) throws SQLException;
 
-    Pelicula buscarPorId(int id);
+    Pelicula buscarPorId(int id) throws SQLException;
 
-    List<Pelicula> listarTodos();
+    List<Pelicula> listarTodos() throws SQLException;
 }
