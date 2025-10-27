@@ -14,6 +14,7 @@ import model.GestionUsuario;
 import model.TL2;
 import DAOjdbc.UsuarioDAOjdbc;
 import DB.BaseDeDatos;
+import model.Administrador;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -25,8 +26,9 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static GestionUsuario gestionUsuario = new GestionUsuario();
     private static TL2 TL2 = new TL2();
+    private static Administrador Administrador = new Administrador();
 
-    public static void registrarDatosPersonales() throws Exception {
+    private static void registrarDatosPersonales() throws Exception {
         
         // 1. SOLICITAR DATOS 
         Usuario DatosPersonales = new Usuario();
@@ -55,7 +57,7 @@ public class Main {
         }
     }
 
-    public static void registrarUsuario() throws Exception {
+    private static void registrarUsuario() throws Exception {
         
     
         Usuario u = new Usuario();
@@ -96,7 +98,60 @@ public class Main {
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
+
+    private static void registrarPelicula() throws Exception {
+        
     
+        model.Pelicula p = new model.Pelicula();
+       
+        try {
+            // 1. SOLICITAR DATOS DE LA PELÍCULA
+           solicitarDatosPelicula(p);
+            Administrador.validarRegistroPelicula(p);
+
+            // 2. MOSTRAR Y CONFIRMAR al usuario
+            mostrarDatosPelicula(p);
+            System.out.println("\n¿Son estos datos correctos? (S/N): ");
+            String confirmacion = scanner.nextLine();
+
+            if ("S".equals(confirmacion)) {
+                // 3. GUARDAR EN LA BASE DE DATOS
+                Administrador.almacenarPelicula(p);
+                System.out.println("\n¡REGISTRO EXITOSO! Los datos se han guardado correctamente.");
+            } else {
+                System.out.println("\nRegistro cancelado por el usuario. No se guardó en la Base de Datos.");
+            }
+
+        } 
+        catch (SQLException e) {
+            System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
+        }
+    }
+    private static void mostrarDatosPelicula(model.Pelicula p) {
+        System.out.println("\n--- DATOS INGRESADOS DE LA PELÍCULA ---");
+        System.out.println("Género(s): " + String.join(", ", p.getGeneros()));
+        System.out.println("Título: " + p.getMetadatos().getTitulo());
+        System.out.println("Resumen: " + p.getMetadatos().getSipnosis());
+        System.out.println("Director: " + p.getMetadatos().getDirector());
+        System.out.println("Duración (minutos): " + p.getVideo().getDuracion());
+    }   
+    private static void solicitarDatosPelicula(model.Pelicula p){
+        System.out.println("Ingrese Género(s) (separados por comas si son varios):");
+        String generosInput = scanner.nextLine();
+        String[] generosArray = generosInput.split(",");
+        for (String genero : generosArray) {
+            p.anadirGeneros(genero.trim());
+        }
+        System.out.println("Ingrese Título:");
+        p.getMetadatos().setTitulo(scanner.nextLine());
+        System.out.println("Ingrese Resumen:");
+        p.getMetadatos().setSipnosis(scanner.nextLine());
+        System.out.println("Ingrese Director:");
+        p.getMetadatos().setDirector(scanner.nextLine());
+        System.out.println("Ingrese Duración (en minutos):");
+        p.getVideo().setDuracion(scanner.nextDouble());
+        scanner.nextLine(); // Consumir el salto de línea pendiente
+    }
 
     private static void mostrarDatosIngresados(Usuario u) {
         System.out.println("\n--- DATOS INGRESADOS ---");

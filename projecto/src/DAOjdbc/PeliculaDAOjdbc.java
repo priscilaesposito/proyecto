@@ -16,7 +16,7 @@ import model.Pelicula;
 public class PeliculaDAOjdbc implements PeliculaDAO {
 
     @Override
-    public void registrar(Pelicula pelicula) {
+    public void registrar(Pelicula pelicula) throws SQLException {
         String sql = "INSERT INTO PELICULA (GENERO, TITULO, RESUMEN, DIRECTOR, DURACION) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = BaseDeDatos.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -95,7 +96,7 @@ public class Administrador extends Usuario {
         }
     }
 
-    public void almacenarPelicula(Pelicula pelicula) {
+    public void almacenarPelicula(Pelicula pelicula) throws SQLException {
         peliD.registrar(pelicula);
 
     }
