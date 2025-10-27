@@ -11,6 +11,15 @@ public class Titulo {
     private metadatos Metadatos;
     private Resenia LR;
 
+    // Constructor que inicializa las listas y objetos
+    public Titulo() {
+        this.generos = new LinkedList<>();
+        this.paisesDisponible = new LinkedList<>();
+        this.Metadatos = new metadatos();
+        this.LR = new Resenia();
+    }
+
+
     public Resenia getListasyResenias() {
         return LR;
     }
