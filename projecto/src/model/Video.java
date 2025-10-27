@@ -34,10 +34,8 @@ public class Video {
 	}
 	
 	public void agregarSubtitulos(String archivoSubtitulos, String idioma) {
-		// Implementation here
 	}
 	
 	public void agregarAudios(String archivoAudios, String idioma) {
-		// Implementation here
 	}
 }
