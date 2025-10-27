@@ -2,7 +2,6 @@ package app;
 
 import model.Usuario;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,6 @@ import DB.BaseDeDatos;
 import model.Administrador;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class Main {
 
@@ -127,6 +125,21 @@ public class Main {
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
+
+    private static void listarUsuarios() throws Exception {
+        try {
+            List<Usuario> usuarios = TL2.getListaUsuarios();
+            System.out.println("\n--- LISTA DE USUARIOS REGISTRADOS ---");
+            for (Usuario u : usuarios) {
+                System.out.println("ID: " + u.getID_USUARIO() + ", Username: " + u.getUsername() + ", Correo: " + u.getCorreo() +
+                        ", Nombre: " + u.getNombre() + " " + u.getApellido() + ", DNI: " + u.getDNI());
+            }
+        } 
+        catch (SQLException e) {
+            System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
+        }
+    }
+
     private static void mostrarDatosPelicula(model.Pelicula p) {
         System.out.println("\n--- DATOS INGRESADOS DE LA PELÍCULA ---");
         System.out.println("Género(s): " + String.join(", ", p.getGeneros()));
@@ -208,6 +221,9 @@ public class Main {
                     break;
                 case 3:
                     registrarPelicula();
+                    break;
+                case 4:
+                    listarUsuarios();
                     break;
                 default:
                     System.out.println("Opción no válida. Saliendo del programa.");
