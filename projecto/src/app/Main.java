@@ -165,27 +165,25 @@ public class Main {
             System.err.println("\n[ERROR DE BD] Falló la operación de la base de datos: " + e.getMessage());
         }
     }
-
-private static void registrarResenia() throws Exception {
-    Resenia r = new Resenia();
-
-    //SOLICITAR DATOS
+private static Resenia solicitarDatosParaResenia() throws SQLException {
+      Resenia r = new Resenia();
     System.out.println("Ingrese su nombre de usuario:");
     String nombreUsuario = scanner.nextLine();
     System.out.println("Ingrese su contraseña:");
     String contrasenia = scanner.nextLine();
-
-    //VALIDAR DATOS
+     //VALIDAR DATOS
     gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
-     
+      
     Usuario u = gestionUsuario.buscar(nombreUsuario);
     if (u == null) {
         System.out.println("Error: Usuario no encontrado. Verifique sus credenciales.");
-        return;
+        return null;
     }
     r.setID_Usuario(u.getID_USUARIO());
-    
-    //LISTAR PELICULAS
+    return r;
+}
+
+private static void mostrarListaPeliculas() throws Exception {
     String criterio = "TITULO";
     List<model.Pelicula> peliculas = TL2.listarPeliculasOrdenadas(criterio);
     System.out.println("\n--- LISTA DE PELICULAS REGISTRADAS ---");
@@ -193,13 +191,28 @@ private static void registrarResenia() throws Exception {
         System.out.println("ID: " + p.getID() + ", Título: " + p.getMetadatos().getTitulo() + ", Director: " + p.getMetadatos().getDirector() +
                 ", Género(s): " + String.join(", ", p.getGeneros()) + ", Duración: " + p.getVideo().getDuracion() + " minutos");
     }
+}
+
+
+private static void registrarResenia() throws Exception {
+   
+
+    //SOLICITAR DATOS
+    Resenia r = solicitarDatosParaResenia();
+
+    if (r == null) {
+        System.out.println("Error al solicitar datos para la reseña.");
+        return;
+    }
+
+    //LISTAR PELICULAS
+    mostrarListaPeliculas();
+
     //SELECCIONAR PELICULA
     System.out.println("\nSeleccione el ID de la película que desea reseñar:");
     int idPelicula = scanner.nextInt();
     scanner.nextLine(); //SALTO DE LINEA
     r.setID_Pelicula(idPelicula);
-
-    
 
     //DATOS DE LA RESENIA
     System.out.println("Ingrese su calificación:");
@@ -209,6 +222,7 @@ private static void registrarResenia() throws Exception {
     System.out.println("Ingrese su comentario:");
     String comentario = scanner.nextLine();
     r.setComentario(comentario);
+    //MODULO
 
     // Obtener fecha y hora actual 
     LocalDateTime fechaHoraActual = java.time.LocalDateTime.now();
@@ -225,15 +239,20 @@ private static void registrarResenia() throws Exception {
         System.out.println("Operación cancelada.");
     }
 }
-
-private static void aprobarResenia() throws Exception {
-    //RESENIAS NO APROBADAS
+private static void mostrarReseniasNoAprobadas() throws Exception {
+     //RESENIAS NO APROBADAS
     List<Resenia> reseniasNoAprobadas = listasyResenias.listarReseniasNoAprobadas();
     for (Resenia r : reseniasNoAprobadas) {
         System.out.println("ID Reseña: " + r.getID_Resenia() + ", ID Película: " + r.getID_Pelicula() +
                 ", ID Usuario: " + r.getID_Usuario() + ", Calificación: " + r.getCalificacion() +
                 ", Comentario: " + r.getComentario() + ", Fecha y Hora: " + r.getFechaHora());
     }
+}
+
+private static void aprobarResenia() throws Exception {
+    //RESENIAS NO APROBADAS
+    mostrarReseniasNoAprobadas();
+
     //ID RESENIA
     System.out.println("\nIngrese el ID de la reseña que desea aprobar:");
     int idResenia = scanner.nextInt();
@@ -261,7 +280,6 @@ private static void aprobarResenia() throws Exception {
     }
 
 }
-
 private static void mostrardatosresenia(Resenia r) {
     System.out.println("\n--- DATOS DE LA RESEÑA ---");
     System.out.println("ID Película: " + r.getID_Pelicula());
@@ -278,7 +296,7 @@ private static void mostrardatosresenia(Resenia r) {
         System.out.println("Director: " + p.getMetadatos().getDirector());
         System.out.println("Duración (minutos): " + p.getVideo().getDuracion());
     }   
-    private static void solicitarDatosPelicula(model.Pelicula p){
+     private static void solicitarDatosPelicula(model.Pelicula p){
         System.out.println("Ingrese Género(s) (separados por comas si son varios):");
         String generosInput = scanner.nextLine();
         String[] generosArray = generosInput.split(",");
@@ -295,7 +313,6 @@ private static void mostrardatosresenia(Resenia r) {
         p.getVideo().setDuracion(scanner.nextDouble());
         scanner.nextLine(); //  SALTO DE LINEA
     }
-
     private static void mostrarDatosIngresados(Usuario u) {
         System.out.println("\n--- DATOS INGRESADOS ---");
         System.out.println("DNI: " + u.getDNI());
@@ -308,7 +325,6 @@ private static void mostrardatosresenia(Resenia r) {
         System.out.println("Correo: " + u.getCorreo());
         System.out.println("Contraseña: " + u.getContrasenia());
     }
-
     private static void solicitarDatosPersonales(Usuario nuevoUsuario){
         System.out.println("Ingrese DNI:");
         nuevoUsuario.setDNI(scanner.nextInt());
@@ -319,7 +335,6 @@ private static void mostrardatosresenia(Resenia r) {
         nuevoUsuario.setApellido(scanner.nextLine());
 
     }
-
     private static void solicitarDatosUsuario(Usuario nuevoUsuario){
          System.out.println("Ingrese username:");
         nuevoUsuario.setUsername(scanner.nextLine());
@@ -327,8 +342,7 @@ private static void mostrardatosresenia(Resenia r) {
         nuevoUsuario.setCorreo(scanner.nextLine());
         System.out.println("Ingrese Contrasenia:");
         nuevoUsuario.setContrasenia(scanner.nextLine());
-    }
-    
+    }  
     private static void menu(){
         System.out.println("Seleccione una opción:");
             System.out.println("1. Registrar Datos Personales");
@@ -341,7 +355,36 @@ private static void mostrardatosresenia(Resenia r) {
             System.out.println("8. Salir");
 
     }
-
+     private static void opciones(int op) throws Exception {
+        switch (op) {
+            case 1:
+                registrarDatosPersonales();
+                break;
+            case 2:
+                registrarUsuario();
+                break;
+            case 3:
+                registrarPelicula();
+                break;
+            case 4:
+                listarUsuarios();
+                break;
+            case 5:
+                listarPeliculas();
+                break;
+            case 6:
+                registrarResenia();
+                break;
+            case 7:
+                aprobarResenia();
+                break;
+            case 8:
+                break;
+            default:
+                System.out.println("Opción no válida.");
+                break;
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         try {
@@ -354,34 +397,7 @@ private static void mostrardatosresenia(Resenia r) {
             int op = scanner.nextInt();
             scanner.nextLine(); //SALTO DE LINEA
             while (op!=8){
-            switch (op) {
-                case 1:
-                    registrarDatosPersonales();
-                    break;
-                case 2:
-                    registrarUsuario();
-                    break;
-                case 3:
-                    registrarPelicula();
-                    break;
-                case 4:
-                    listarUsuarios();
-                    break;
-                case 5:
-                    listarPeliculas();
-                     break;
-                case 6:
-                    registrarResenia();
-                     break;
-                case 7:
-                    aprobarResenia();
-                     break;
-                case 8:
-                    break;   
-                 default:
-                    System.out.println("Opción no válida.");
-                    break;
-            }
+            opciones(op);
             menu();
             op = scanner.nextInt();
             scanner.nextLine(); //SALTO DE LINEA
@@ -398,4 +414,6 @@ private static void mostrardatosresenia(Resenia r) {
             scanner.close();
         }
     }
+
+
 }
