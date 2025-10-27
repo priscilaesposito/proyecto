@@ -78,7 +78,7 @@ public class Main {
             //SELECCIONAR DATOS PERSONALES EXISTENTES
             System.out.println("\nSeleccione el ID de los datos personales que desea asociar al usuario:");
             int idSeleccionado = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea pendiente
+            scanner.nextLine(); //SALTO DE LINEA
             
             //SOLICITAR DATOS DEL USUARIO
              solicitarDatosUsuario(u);
@@ -197,7 +197,7 @@ private static void registrarResenia() throws Exception {
     //SELECCIONAR PELICULA
     System.out.println("\nSeleccione el ID de la película que desea reseñar:");
     int idPelicula = scanner.nextInt();
-    scanner.nextLine(); // Consumir el salto de línea pendiente
+    scanner.nextLine(); //SALTO DE LINEA
     r.setID_Pelicula(idPelicula);
 
     
@@ -206,7 +206,7 @@ private static void registrarResenia() throws Exception {
     System.out.println("Ingrese su calificación:");
     int calificacion = scanner.nextInt();
     r.setCalificacion(calificacion);
-    scanner.nextLine(); // Consumir el salto de línea pendiente
+    scanner.nextLine(); //SALTO DE LINEA
     System.out.println("Ingrese su comentario:");
     String comentario = scanner.nextLine();
     r.setComentario(comentario);
@@ -246,13 +246,13 @@ private static void aprobarResenia() throws Exception {
 
     //VALIDACION
     listasyResenias.validarResenia(idResenia);
-    
+
     // Se muestra la reseña seleccionada.
     mostrardatosresenia(r);
 
     //APROBAR RESENIA
     System.out.println("¿Desea aprobar esta reseña? (S/N): ");
-    scanner.nextLine(); // Consumir el salto de línea pendiente
+    scanner.nextLine(); //SALTO DE LINEA
     String confirmacion = scanner.nextLine();
     if (confirmacion.equalsIgnoreCase("S")) {
         listasyResenias.aprobarResenia(idResenia);
@@ -294,7 +294,7 @@ private static void mostrardatosresenia(Resenia r) {
         p.getMetadatos().setDirector(scanner.nextLine());
         System.out.println("Ingrese Duración (en minutos):");
         p.getVideo().setDuracion(scanner.nextDouble());
-        scanner.nextLine(); // Consumir el salto de línea pendiente
+        scanner.nextLine(); //  SALTO DE LINEA
     }
 
     private static void mostrarDatosIngresados(Usuario u) {
@@ -313,7 +313,7 @@ private static void mostrardatosresenia(Resenia r) {
     private static void solicitarDatosPersonales(Usuario nuevoUsuario){
         System.out.println("Ingrese DNI:");
         nuevoUsuario.setDNI(scanner.nextInt());
-        scanner.nextLine(); // Consumir el salto de línea pendiente
+        scanner.nextLine(); // SALTO DE LINEA
         System.out.println("Ingrese Nombre:");
         nuevoUsuario.setNombre(scanner.nextLine());
         System.out.println("Ingrese Apellido:");
@@ -347,13 +347,13 @@ private static void mostrardatosresenia(Resenia r) {
     public static void main(String[] args) throws Exception {
         try {
             
-            conexion.conectar(); 
+            conexion.conectar(); //CONECTAR
             BaseDeDatos.inicializarBaseDeDatos();
 
             //menu para a elegir modulo
             menu();
             int op = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea pendiente
+            scanner.nextLine(); //SALTO DE LINEA
             while (op!=8){
             switch (op) {
                 case 1:
@@ -385,7 +385,7 @@ private static void mostrardatosresenia(Resenia r) {
             }
             menu();
             op = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea pendiente
+            scanner.nextLine(); //SALTO DE LINEA
 
         }
 
