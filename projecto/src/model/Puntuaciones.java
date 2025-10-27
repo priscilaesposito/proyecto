@@ -38,7 +38,7 @@ public class Puntuaciones {
 	    }
 
 	    /**
-	     * Obtiene la calificacion numurica del título.
+	     * Obtiene la calificacion numerica del título.
 	     *
 	     * @return puntuacion del titulo
 	     */

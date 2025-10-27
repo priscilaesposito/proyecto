@@ -52,7 +52,7 @@ public class GestionUsuario {
      * Valida todos los campos de un objeto Usuario según los requisitos.
      * 
      * @param usuario El objeto Usuario con los datos a validar de datos personales.
-     * @return El mismo objeto Usuario si es válido, o null si hay errores.
+     * @return El mismo objeto Usuario si es valido, o null si hay errores.
      * @throws SQLException
      */
     public void validacionDatosPersonales(Usuario usuario) throws SQLException {

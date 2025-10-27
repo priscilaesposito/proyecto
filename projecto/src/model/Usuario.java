@@ -150,7 +150,7 @@ public class Usuario {
     /**
      * Asigna la contrasenia del usuario.
      * 
-     * @param contraseña
+     * @param contrasenia
      */
 
     public void setContrasenia(String contrasenia) {

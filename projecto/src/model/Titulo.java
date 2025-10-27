@@ -81,11 +81,11 @@ public class Titulo {
     }
 
     public void agregarAMiLista() {
-        // Lógica para agregar a la lista de un usuario
+        // Logica para agregar a la lista de un usuario
     }
 
     public void reproducirContenido() {
-        // Lógica para reproducir el contenido
+        // Logica para reproducir el contenido
     }
 
 }

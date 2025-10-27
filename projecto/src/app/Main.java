@@ -201,7 +201,7 @@ private static void registrarResenia() throws Exception {
 
     
 
-    //DATOS DE LA RESEÑA
+    //DATOS DE LA RESENIA
     System.out.println("Ingrese su calificación:");
     int calificacion = scanner.nextInt();
     r.setCalificacion(calificacion);
@@ -246,7 +246,7 @@ private static void aprobarResenia() throws Exception {
     //VALIDACION
     listasyResenias.validarResenia(idResenia);
 
-    // Se muestra la reseña seleccionada.
+    // Se muestra la resena seleccionada.
     mostrardatosresenia(r);
 
     //APROBAR RESENIA

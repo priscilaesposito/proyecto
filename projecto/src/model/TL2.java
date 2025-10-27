@@ -67,7 +67,7 @@ public class TL2 {
 			Collections.sort(listaUsuarios, new OrdenarPorMail());
 
 		} else {
-			System.out.println("Criterio de ordenacian no valido. Se muestra sin ordenar.");
+			System.out.println("Criterio de ordenacion no valido. Se muestra sin ordenar.");
 		}
 
 		return listaUsuarios;
