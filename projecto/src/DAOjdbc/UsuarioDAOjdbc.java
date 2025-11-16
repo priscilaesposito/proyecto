@@ -32,8 +32,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
             
             pstmt.executeUpdate();
             
-        } catch (SQLException e) {
-            System.out.println("Error al registrar usuario: " + e.getMessage());
         }
     }
 
@@ -49,8 +47,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
                     return mapResultSetToUsuario(rs);
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Error al buscar usuario: " + e.getMessage());
         }
         return null;
     }
@@ -67,8 +63,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
             while (rs.next()) {
                 lista.add(mapResultSetToUsuario(rs));
             }
-        } catch (SQLException e) {
-            System.out.println("Error al listar usuarios: " + e.getMessage());
         }
         return lista;
     }
@@ -87,8 +81,6 @@ public class UsuarioDAOjdbc implements UsuarioDAO {
                     return mapResultSetToUsuario(rs);
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Error al validar usuario: " + e.getMessage());
         }
         return null;
     }

@@ -35,8 +35,6 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
 
             pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error al registrar la película: " + e.getMessage());
         }
     }
 
@@ -52,8 +50,6 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
                     return mapResultSetToPelicula(rs);
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Error al buscar película: " + e.getMessage());
         }
         return null;
     }
@@ -70,8 +66,6 @@ public class PeliculaDAOjdbc implements PeliculaDAO {
             while (rs.next()) {
                 peliculas.add(mapResultSetToPelicula(rs));
             }
-        } catch (SQLException e) {
-            System.out.println("Error al listar películas: " + e.getMessage());
         }
         return peliculas;
     }

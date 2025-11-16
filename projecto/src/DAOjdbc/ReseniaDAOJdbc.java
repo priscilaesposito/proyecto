@@ -32,8 +32,6 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
 
             pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error al registrar resenia: " + e.getMessage());
         }
     }
 
@@ -49,8 +47,6 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
                     return mapResultSetToResenia(rs);
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Error al buscar resenia: " + e.getMessage());
         }
         return null;
     }
@@ -67,8 +63,6 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
             while (rs.next()) {
                 lista.add(mapResultSetToResenia(rs));
             }
-        } catch (SQLException e) {
-            System.out.println("Error al listar resenias no aprobadas: " + e.getMessage());
         }
         return lista;
     }
@@ -82,8 +76,6 @@ public class ReseniaDAOJdbc implements ReseniaDAO {
             pstmt.setInt(1, idResenia);
             pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error al aprobar la resenia: " + e.getMessage());
         }
     }
 

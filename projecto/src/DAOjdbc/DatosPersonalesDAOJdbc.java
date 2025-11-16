@@ -25,8 +25,6 @@ public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
             pstmt.setInt(3, datos.getDNI());
             pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error al registrar datos personales: " + e.getMessage());
         }
     }
 
@@ -41,8 +39,6 @@ public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {
             while (rs.next()) {
                 lista.add(tomarDatos(rs));
             }
-        } catch (SQLException e) {
-            System.out.println("Error al listar datos personales: " + e.getMessage());
         }
         return lista;
     }
