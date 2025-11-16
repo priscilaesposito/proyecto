@@ -3,7 +3,7 @@ package app;
 import java.util.Scanner;
 import java.sql.SQLException;
 
-import dao.conexion;
+import dao.Conexion;
 
 
 import db.BaseDeDatos;
@@ -57,7 +57,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         try {
             
-            conexion.conectar(); //CONECTAR
+            Conexion.conectar(); //CONECTAR
             BaseDeDatos.inicializarBaseDeDatos();
 
             //menu para a elegir modulo
@@ -78,7 +78,7 @@ public class Main {
         } 
 
         finally {
-            conexion.desconectar(); // Cierra la conexion
+            Conexion.desconectar(); // Cierra la conexion
             scanner.close();
         }
     }
