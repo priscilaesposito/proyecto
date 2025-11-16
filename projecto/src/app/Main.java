@@ -3,10 +3,10 @@ package app;
 import java.util.Scanner;
 import java.sql.SQLException;
 
-import DAO.conexion;
+import dao.conexion;
 
 
-import DB.BaseDeDatos;
+import db.BaseDeDatos;
 
 public class Main {
 
@@ -25,25 +25,25 @@ public class Main {
      private static void opciones(int op) throws Exception {
         switch (op) {
             case 1:
-                logica.registrarDatosPersonales();
+                Logica.registrarDatosPersonales();
                 break;
             case 2:
-                logica.registrarUsuario();
+                Logica.registrarUsuario();
                 break;
             case 3:
-                logica.registrarPelicula();
+                Logica.registrarPelicula();
                 break;
             case 4:
-                logica.listarUsuarios();
+                Logica.listarUsuarios();
                 break;
             case 5:
-                logica.listarPeliculas();
+                Logica.listarPeliculas();
                 break;
             case 6:
-                logica.registrarResenia();
+                Logica.registrarResenia();
                 break;
             case 7:
-                logica. aprobarResenia();
+                Logica. aprobarResenia();
                 break;
             case 8:
                 break;

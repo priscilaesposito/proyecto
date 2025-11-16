@@ -4,10 +4,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import Enumerativo.Genero;
+import enumerativo.Genero;
 
-import DAO.PeliculaDAO;
-import DAOjdbc.PeliculaDAOjdbc;
+import dao.PeliculaDAO;
 
 /**
  * Administrador se hereda de {@link Usuario}
@@ -20,7 +19,7 @@ import DAOjdbc.PeliculaDAOjdbc;
  */
 
 public class Administrador extends Usuario {
-    private PeliculaDAO peliD = new DAOjdbc.PeliculaDAOjdbc();
+    private PeliculaDAO peliD = new daoJDBC.PeliculaDAOjdbc();
 
     public Administrador() {
     }

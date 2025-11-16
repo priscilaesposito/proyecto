@@ -8,14 +8,14 @@ public class Titulo {
     private String tipoContenido;
     private LinkedList<String> generos;
     private LinkedList<String> paisesDisponible;
-    private metadatos Metadatos;
+    private Metadatos Metadatos;
     private Resenia LR;
 
     // Constructor que inicializa las listas y objetos
     public Titulo() {
         this.generos = new LinkedList<>();
         this.paisesDisponible = new LinkedList<>();
-        this.Metadatos = new metadatos();
+        this.Metadatos = new Metadatos();
         this.LR = new Resenia();
     }
 
@@ -32,11 +32,11 @@ public class Titulo {
         this.cantVisualizaciones = cantVisualizaciones;
     }
 
-    public metadatos getMetadatos() {
+    public Metadatos getMetadatos() {
         return Metadatos;
     }
 
-    public void setMetadatos(metadatos metadatos) {
+    public void setMetadatos(Metadatos metadatos) {
         Metadatos = metadatos;
     }
 

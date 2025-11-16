@@ -1,15 +1,15 @@
 // Archivo: src/db/BaseDeDatos.java
-package DB;
+package db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import DAO.conexion;
+import dao.Conexion;
 
 public class BaseDeDatos {
 
     public static Connection conectar() throws SQLException {
-        return conexion.conectar();
+        return Conexion.conectar();
     }
 
     public static void inicializarBaseDeDatos() {

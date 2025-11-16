@@ -1,5 +1,5 @@
 
-package DAO;
+package dao;
 
 import model.Usuario;
 import java.util.List;

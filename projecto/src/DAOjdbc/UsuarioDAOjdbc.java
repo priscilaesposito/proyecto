@@ -1,4 +1,4 @@
-package DAOjdbc;
+package daoJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import DAO.UsuarioDAO;
-import DB.BaseDeDatos;
+import dao.UsuarioDAO;
+import db.BaseDeDatos;
 import model.Usuario;
 
 public class UsuarioDAOjdbc implements UsuarioDAO {

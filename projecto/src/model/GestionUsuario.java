@@ -5,15 +5,13 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import DAO.DatosPersonalesDAO;
-import DAO.UsuarioDAO;
+import dao.DatosPersonalesDAO;
+import dao.UsuarioDAO;
 
-import DAOjdbc.DatosPersonalesDAOJdbc;
-import DAOjdbc.UsuarioDAOjdbc;
 
 public class GestionUsuario {
-    private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
-    private UsuarioDAO UD = new DAOjdbc.UsuarioDAOjdbc();
+    private DatosPersonalesDAO UDJ = new daoJDBC.DatosPersonalesDAOJdbc();
+    private UsuarioDAO UD = new daoJDBC.UsuarioDAOjdbc();
 
     public void configurarIdioma() {
         // TODO: Implement configurarIdioma

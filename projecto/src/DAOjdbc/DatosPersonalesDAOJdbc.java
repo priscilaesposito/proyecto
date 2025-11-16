@@ -1,5 +1,5 @@
 // Archivo: src/daojdbc/DatosPersonalesDAOJdbc.java
-package DAOjdbc;
+package daoJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import DAO.DatosPersonalesDAO;
-import DB.BaseDeDatos;
+import dao.DatosPersonalesDAO;
+import db.BaseDeDatos;
 import model.Usuario;
 
 public class DatosPersonalesDAOJdbc implements DatosPersonalesDAO {

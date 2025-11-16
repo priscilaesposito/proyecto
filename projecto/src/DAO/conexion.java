@@ -1,10 +1,10 @@
-package DAO;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class conexion {
+public class Conexion {
 private static final String DB_URL = "jdbc:sqlite:plataforma_streaming.db";
 
     private static Connection connection = null;

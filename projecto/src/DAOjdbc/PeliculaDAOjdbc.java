@@ -1,5 +1,4 @@
-
-package DAOjdbc;
+package daoJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
 
-import DAO.PeliculaDAO;
-import DB.BaseDeDatos;
+import dao.PeliculaDAO;
+import db.BaseDeDatos;
 import model.Pelicula;
 
 public class PeliculaDAOjdbc implements PeliculaDAO {

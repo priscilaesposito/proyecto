@@ -5,26 +5,23 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import DAO.DatosPersonalesDAO;
-import DAOjdbc.DatosPersonalesDAOJdbc;
+import dao.DatosPersonalesDAO;
 
-import DAO.UsuarioDAO;
-import DAOjdbc.UsuarioDAOjdbc;
+import dao.UsuarioDAO;
 
-import DAO.PeliculaDAO;
-import DAOjdbc.PeliculaDAOjdbc;
+import dao.PeliculaDAO;
 
-import Utilidades.OrdenarPorNombreUsuario;
-import Utilidades.OrdenarPorMail;
+import utilidades.OrdenarPorNombreUsuario;
+import utilidades.OrdenarPorMail;
 
-import Utilidades.OrdenarPorTitulo;
-import Utilidades.OrdenarPorDuracion;
-import Utilidades.OrdenarPorPrimerGenero;
+import utilidades.OrdenarPorTitulo;
+import utilidades.OrdenarPorDuracion;
+import utilidades.OrdenarPorPrimerGenero;
 
 public class TL2 {
-	private PeliculaDAO PD = new DAOjdbc.PeliculaDAOjdbc();
-	private UsuarioDAO UD = new DAOjdbc.UsuarioDAOjdbc();
-	private DatosPersonalesDAO UDJ = new DAOjdbc.DatosPersonalesDAOJdbc();
+	private PeliculaDAO PD = new daoJDBC.PeliculaDAOjdbc();
+	private UsuarioDAO UD = new daoJDBC.UsuarioDAOjdbc();
+	private DatosPersonalesDAO UDJ = new daoJDBC.DatosPersonalesDAOJdbc();
 	private LinkedList<Usuario> listaUsuarios;
 	private LinkedList<Titulo> catalogo;
 

@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.sql.SQLException;
 
-import DAO.DatosPersonalesDAO;
-import DAO.UsuarioDAO;
+import dao.DatosPersonalesDAO;
+import dao.UsuarioDAO;
 
-import DAOjdbc.DatosPersonalesDAOJdbc;
-import DAOjdbc.UsuarioDAOjdbc;
+import daoJDBC.DatosPersonalesDAOJdbc;
+import daoJDBC.UsuarioDAOjdbc;
 
 import model.Administrador;
 import model.Usuario;
@@ -19,7 +19,7 @@ import model.TL2;
 import java.time.LocalDateTime;
 import model.ListasyResenias;
 
-public class logica{
+public class Logica{
 
     private static UsuarioDAO usuarioDAO = new UsuarioDAOjdbc();
     private static DatosPersonalesDAO datosPersonalesDAO = new DatosPersonalesDAOJdbc();

@@ -1,4 +1,4 @@
-package Enumerativo;
+package enumerativo;
 
 public enum Genero {
     ACCION,

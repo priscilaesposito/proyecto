@@ -2,7 +2,7 @@ package model;
 
 import java.util.LinkedList;
 
-public class metadatos {
+public class Metadatos {
     private String sipnosis;
     private String titulo;
     private LinkedList<String> elenco;
@@ -10,7 +10,7 @@ public class metadatos {
     private String idioma;
     private LinkedList<String> subtitulosDisponibles;
     
-    public metadatos() {
+    public Metadatos() {
         this.elenco = new LinkedList<>();
         this.subtitulosDisponibles = new LinkedList<>();
     }

@@ -4,11 +4,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import DAO.ReseniaDAO;
-import DAOjdbc.ReseniaDAOJdbc;
+import dao.ReseniaDAO;
 
 public class ListasyResenias {
-    private ReseniaDAO RD = new DAOjdbc.ReseniaDAOJdbc();
+    private ReseniaDAO RD = new daoJDBC.ReseniaDAOJdbc();
     private LinkedList<Resenia> resenias;
     private double puntuacion;
     private int cantPuntuacion;
