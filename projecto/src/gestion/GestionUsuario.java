@@ -1,4 +1,4 @@
-package model;
+package gestion;
 
 
 import java.sql.SQLException;
@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import dao.DatosPersonalesDAO;
 import dao.UsuarioDAO;
+import model.Usuario;
 
 
 public class GestionUsuario {

@@ -1,4 +1,4 @@
-package model;
+package gestion;
 
 /**
  * Listas las cuales puede recorrer {@link Cliente} 
@@ -13,6 +13,8 @@ package model;
 
 import java.util.LinkedList;
 import model.Titulo; 
+import model.Generos;
+import model.Puntuaciones;
 
 public class GestionListas {
      private LinkedList<Titulo> miLista;

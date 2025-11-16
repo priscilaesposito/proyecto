@@ -12,7 +12,7 @@ import daoJDBC.UsuarioDAOjdbc;
 
 import model.Administrador;
 import model.Usuario;
-import model.GestionUsuario;
+import gestion.GestionUsuario;
 import model.Resenia;
 import model.TL2;
 
