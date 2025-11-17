@@ -109,7 +109,7 @@ public class GestionUsuario {
 
     public void ValidacionUsuario(Usuario usuario) {
 
-        if (usuario.getNombre() == null || usuario.getNombre().trim().isEmpty()) {
+        if (usuario.getUsername() == null || usuario.getUsername().trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre de usuario no puede estar vacio.");
         }
 
