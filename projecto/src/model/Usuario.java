@@ -2,6 +2,8 @@ package model;
 
 import java.util.LinkedList;
 
+import gestion.Administrador;
+
 /**
  * De esta clase heredan {@link Administrador} y {@link Cliente}.
  *

@@ -9,15 +9,14 @@ import dao.UsuarioDAO;
 
 import daoJDBC.DatosPersonalesDAOJdbc;
 import daoJDBC.UsuarioDAOjdbc;
-
-import model.Administrador;
 import model.Usuario;
+import gestion.Administrador;
 import gestion.GestionUsuario;
+import gestion.ListasyResenias;
+import gestion.TL2;
 import model.Resenia;
-import model.TL2;
 
 import java.time.LocalDateTime;
-import model.ListasyResenias;
 
 public class Logica{
 

@@ -1,11 +1,13 @@
-package model;
+package gestion;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 import enumerativo.Genero;
-
+import model.Pelicula;
+import model.Titulo;
+import model.Usuario;
 import dao.PeliculaDAO;
 
 /**

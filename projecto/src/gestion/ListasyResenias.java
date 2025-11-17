@@ -1,10 +1,11 @@
-package model;
+package gestion;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 import dao.ReseniaDAO;
+import model.Resenia;
 
 public class ListasyResenias {
     private ReseniaDAO RD = new daoJDBC.ReseniaDAOJdbc();

@@ -1,4 +1,4 @@
-package model;
+package gestion;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -8,7 +8,9 @@ import java.util.List;
 import dao.DatosPersonalesDAO;
 
 import dao.UsuarioDAO;
-
+import model.Pelicula;
+import model.Titulo;
+import model.Usuario;
 import dao.PeliculaDAO;
 
 import utilidades.OrdenarPorNombreUsuario;
