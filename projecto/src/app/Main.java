@@ -76,7 +76,6 @@ public class Main {
         catch (SQLException e) {
             System.out.println("Error al iniciar la aplicación: La conexión a la BD falló.");
         } 
-
         finally {
             Conexion.desconectar(); // Cierra la conexion
             scanner.close();

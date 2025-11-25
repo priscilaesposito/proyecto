@@ -55,9 +55,9 @@ public class GestionUsuario {
      */
     public void validacionDatosPersonales(Usuario usuario) throws SQLException {
         // Validar unicidad de DNI
-        if (dniUnico(usuario.getDNI())) {
+         if (dniUnico(usuario.getDNI())) {
             throw new IllegalArgumentException("El DNI ya existe en la base de datos.");
-        }
+            }
 
         if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío.");

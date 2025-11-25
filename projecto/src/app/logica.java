@@ -36,8 +36,13 @@ public class Logica{
         try {
 
             //VALIDACION
+            try{
             gestionUsuario.validacionDatosPersonales(DatosPersonales);
-            
+            }
+            catch (IllegalArgumentException e) {
+            System.err.println("\n[ERROR DE VALIDACION] " + e.getMessage());
+            return;  }
+
 
             //MOSTRAR Y CONFIRMAR
             mostrarDatosIngresados(DatosPersonales);
@@ -78,7 +83,12 @@ public class Logica{
             
             //SOLICITAR DATOS DEL USUARIO
              solicitarDatosUsuario(u);
-             gestionUsuario.ValidacionUsuario(u);
+             try{
+             gestionUsuario.ValidacionUsuario(u);}
+             catch (IllegalArgumentException e) {
+            System.err.println("\n[ERROR DE VALIDACION] " + e.getMessage());
+            return;  }
+
              u.setID_DATOS_PERSONALES(idSeleccionado);
 
             //MOSTRAR Y CONFIRMAR 
@@ -108,7 +118,11 @@ public class Logica{
         try {
             //SOLICITAR DATOS DE LA PELICULA
            solicitarDatosPelicula(p);
-            Administrador.validarRegistroPelicula(p);
+           try{
+            Administrador.validarRegistroPelicula(p);}
+            catch (IllegalArgumentException e) {
+            System.err.println("\n[ERROR DE VALIDACION] " + e.getMessage());
+            return;  }
 
             //MOSTRAR Y CONFIRMAR
             mostrarDatosPelicula(p);
@@ -247,8 +261,9 @@ private static Resenia solicitarDatosParaResenia() throws SQLException {
     System.out.println("Ingrese su contraseña:");
     String contrasenia = scanner.nextLine();
      //VALIDAR DATOS
+     
     gestionUsuario.validacionUsuarioContrasenia(nombreUsuario, contrasenia);
-      
+
     Usuario u = gestionUsuario.buscar(nombreUsuario);
     if (u == null) {
         System.out.println("Error: Usuario no encontrado. Verifique sus credenciales.");
